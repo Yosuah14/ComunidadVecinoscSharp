@@ -1,20 +1,26 @@
-﻿using System;
+﻿using ComunidadVecinos.Domain;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
-namespace ComunidadVecinos.Domain
+namespace ComunidadVecinos.ViewModel
 {
-    public class Comunidad : INotifyPropertyChanged
+    public class ComunidadModelView : INotifyPropertyChanged
     {
         // Evento para notificar cambios en las propiedades
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private const String cnstr = "server=localhost;uid=Jose;pwd=josepablo;database=vecindario";
 
         // Método para notificar cambios en las propiedades
 
         // Atributos
+        private ObservableCollection<Comunidad> comunidades;
         private int idComunidad;
         private string nombre;
         private string direccion;
@@ -28,6 +34,16 @@ namespace ComunidadVecinos.Domain
         private byte? salaReuniones;
         private byte? pistaTenis;
         private byte? pistaPadel;
+
+        public ObservableCollection<Comunidad> Comunidades
+        {
+            get { return comunidades; }
+            set
+            {
+                comunidades = value;
+                OnPropertyChanged("Comunidades");
+            }
+        }
 
         // Propiedades
         public int IdComunidad
@@ -161,7 +177,7 @@ namespace ComunidadVecinos.Domain
         }
 
         // Constructor
-        public Comunidad()
+        public ComunidadModelView()
         {
             // Puedes inicializar propiedades predeterminadas aquí si lo deseas.
         }
@@ -172,24 +188,13 @@ namespace ComunidadVecinos.Domain
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        // Método ToString() para representar la instancia como cadena
-        public override string ToString()
+        public void NewComunity()
         {
-            return $"IdComunidad: {IdComunidad}\n" +
-               $"Nombre: {Nombre}\n" +
-               $"Direccion: {Direccion}\n" +
-               $"FechaCreacion: {FechaCreacion}\n" +
-               $"Piscina: {Piscina}\n" +
-               $"MetrosCuadrados: {MetrosCuadrados}\n" +
-               $"PisoPortero: {PisoPortero}\n" +
-               $"ZonaDuchasBanio: {ZonaDuchasBanio}\n" +
-               $"ParqueInfantil: {ParqueInfantil}\n" +
-               $"MaquinasEjercicio: {MaquinasEjercicio}\n" +
-               $"SalaReuniones: {SalaReuniones}\n" +
-               $"PistaTenis: {PistaTenis}\n" +
-               $"PistaPadel: {PistaPadel}";
+            String SQL = $"INSERT INTO comunidad (Nombre, Direccion, FechaCreacion,Piscina,MetrosCuadrados,PisoPortero,ZonaDuchasBanio,ParqueInfantil,MaquinasEjercicio,SalaReuniones,PistaTenis,PistaPadel) VALUES ('{Nombre}','{Direccion}', '{FechaCreacion}', '{Piscina}', '{MetrosCuadrados}', '{PisoPortero}', '{ZonaDuchasBanio}', '{ParqueInfantil}', '{MaquinasEjercicio}', '{SalaReuniones}', '{PistaTenis}', '{PistaPadel}');";
+            //usaremos las clases de la librería de MySQL para ejecutar queries
+            //Instalar el paqueta MySQL.Data
+            MySQLDataManagement.ExecuteNonQuery(SQL, cnstr);
         }
-    }
 
+    }
 }

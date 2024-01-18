@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ComunidadVecinos.View"
+        xmlns:local="clr-namespace:ComunidadVecinos.View" xmlns:viewmodel="clr-namespace:ComunidadVecinos.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ComunidadModelView}"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid>
@@ -23,39 +23,39 @@
                     </TextBlock>
 
                     <TextBlock Text="Nombre:" VerticalAlignment="Center" Margin="0,0,5,5"/>
-                    <TextBox x:Name="txtNombre"   Text="{Binding Nombre}" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtNombre"   Text="{Binding Nombre, Mode=TwoWay}" Margin="0,0,0,5"/>
 
                     <TextBlock Text="Dirección:" VerticalAlignment="Center" Margin="0,0,5,5"/>
-                    <TextBox x:Name="txtDireccion" Text="{Binding Direccion}" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtDireccion" Text="{Binding Direccion, Mode=TwoWay}" Margin="0,0,0,5"/>
 
                     <TextBlock Text="Fecha de Creación:" VerticalAlignment="Center" Margin="0,0,5,5"/>
-                    <TextBox x:Name="txtFecha" Text="{Binding FechaCreacion}" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtFecha" Text="{Binding FechaCreacion, Mode=TwoWay}" Margin="0,0,0,5"/>
 
                     <TextBlock Text="Metros Cuadrados:" VerticalAlignment="Center" Margin="0,0,5,5"/>
-                    <TextBox x:Name="txtMetrosCuadrados" Text="{Binding FechaCreacion}" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtMetrosCuadrados" Text="{Binding MetrosCuadrados, Mode=TwoWay}" Margin="0,0,0,5"/>
 
 
-                    <CheckBox x:Name="chPiscina" Content="Marcar si tiene piscina" IsChecked="{Binding Piscina}" Margin="0,0,0,7"/>
+                    <CheckBox x:Name="chPiscina" Content="Marcar si tiene piscina" IsChecked="{Binding Piscina, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chParqueInfantil" Content="Marcar si tiene parque infantil" IsChecked="{Binding ParqueInfantil}" Margin="0,0,0,7"/>
+                    <CheckBox x:Name="chParqueInfantil" Content="Marcar si tiene parque infantil" IsChecked="{Binding ParqueInfantil, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chPisoPortero" Content="Marcar si tiene piso de portero" IsChecked="{Binding PisoPortero}" Margin="0,0,0,7"/>
+                    <CheckBox x:Name="chPisoPortero" Content="Marcar si tiene piso de portero" IsChecked="{Binding PisoPortero, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chZonaDuchasBanio" Content="Marcar si tiene zona de duchas/baño" IsChecked="{Binding ZonaDuchasBanio}" Margin="0,0,0,7"/>
+                    <CheckBox x:Name="chZonaDuchasBanio" Content="Marcar si tiene zona de duchas/baño" IsChecked="{Binding ZonaDuchasBanio, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
 
 
-                    <CheckBox x:Name="chMaquinasEjercicio" Content="Marcar si tiene máquinas de ejercicio" IsChecked="{Binding MaquinasEjercicio}" Margin="0,0,0,7"/>
+                    <CheckBox x:Name="chMaquinasEjercicio" Content="Marcar si tiene máquinas de ejercicio" IsChecked="{Binding MaquinasEjercicio, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chSalaReuniones" Content="Marcar si tiene sala de reuniones" IsChecked="{Binding SalaReuniones}" Margin="0,0,0,7"/>
+                    <CheckBox x:Name="chSalaReuniones" Content="Marcar si tiene sala de reuniones" IsChecked="{Binding SalaReuniones, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chPistaTenis" Content="Marcar si tiene pista de tenis" IsChecked="{Binding PistaTenis}" Margin="0,0,0,7"/>
+                    <CheckBox x:Name="chPistaTenis" Content="Marcar si tiene pista de tenis" IsChecked="{Binding PistaTenis, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
                     <CheckBox x:Name="chPistaPadel" Content="Marcar si tiene pista de pádel" IsChecked="{Binding PistaPadel}" Margin="0,0,0,7"/>

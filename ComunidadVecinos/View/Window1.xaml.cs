@@ -1,6 +1,8 @@
 ﻿using ComunidadVecinos.Domain;
+using ComunidadVecinos.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -21,6 +23,7 @@ namespace ComunidadVecinos.View
     /// </summary>
     public partial class Window1 : Window
     {
+        private ComunidadModelView modelCommunity = new ComunidadModelView();
         public Window1()
         {
             InitializeComponent();
@@ -48,38 +51,49 @@ namespace ComunidadVecinos.View
                         byte pistaTenis = chPistaTenis.IsChecked == true ? (byte)1 : (byte)0;
                         byte pistaPadel = chPistaPadel.IsChecked == true ? (byte)1 : (byte)0;
 
+                        modelCommunity.Nombre
+                        modelCommunity.Direccion
+
+                        if (modelCommunity.Comunidades == null) modelCommunity.Comunidades = new ObservableCollection<Comunidad>();
+    
 
 
-                        // Crear una nueva instancia de Comunidad con los valores obtenidos
-                        Comunidad nuevaComunidad = new Comunidad
+                        if (modelCommunity.Comunidades.Where(x => x.Nombre == modelCommunity.Nombre).FirstOrDefault() == null)
                         {
-                            Nombre = nombre,
-                            Direccion = direccion,
-                            FechaCreacion = fechaCreacion.ToString("dd/MM/yyyy"),
-                            MetrosCuadrados = metrosCuadrados,
-                            Piscina = piscina,
-                            ParqueInfantil = parqueInfantil,
-                            MaquinasEjercicio = maquinasEjercicio,
-                            SalaReuniones = salaReuniones,
-                            PistaTenis = pistaTenis,
-                            PistaPadel = pistaPadel,
+                            modelCommunity.Comunidades.Add( // Crear una nueva instancia de Comunidad con los valores obtenidos
+                             new Comunidad
+                             {
+                                 Nombre = modelCommunity.Nombre,
+                                 Direccion = modelCommunity.Direccion,
+                                 FechaCreacion = modelCommunity.FechaCreacion,
+                                 MetrosCuadrados = modelCommunity.MetrosCuadrados,
+                                 Piscina = modelCommunity.Piscina,
+                                 ParqueInfantil = modelCommunity.ParqueInfantil,
+                                 MaquinasEjercicio = modelCommunity.MaquinasEjercicio,
+                                 SalaReuniones = modelCommunity.SalaReuniones,
+                                 PistaTenis = modelCommunity.PistaTenis,
+                                 PistaPadel = modelCommunity.PistaPadel,
 
-                            // Configurar otras propiedades según sea necesario...
-                        };
+                                 // Configurar otras propiedades según sea necesario...
+                             });
+                             modelCommunity.NewComunity();
 
-                        // Mostrar la información de la nueva comunidad en un cuadro de diálogo (puedes cambiar esto según tus necesidades)
-                        MessageBox.Show(nuevaComunidad.ToString(), "Nueva Comunidad Creada");
 
-                        // Aquí puedes realizar más acciones según sea necesario con la nueva comunidad
+
+                            // Mostrar la información de la nueva comunidad en un cuadro de diálogo (puedes cambiar esto según tus necesidades)
+                            MessageBox.Show(modelCommunity.Comunidades.ToString(), "Nueva Comunidad Creada");
+
+                            // Aquí puedes realizar más acciones según sea necesario con la nueva comunidad
+                        }
+                        else
+                        {
+                            ShowError("El valor de Metros Cuadrados no es válido.");
+                        }
                     }
                     else
                     {
-                        ShowError("El valor de Metros Cuadrados no es válido.");
+                        ShowError("El formato de la Fecha de Creación no es válido. Utiliza el formato dd/MM/yyyy.");
                     }
-                }
-                else
-                {
-                    ShowError("El formato de la Fecha de Creación no es válido. Utiliza el formato dd/MM/yyyy.");
                 }
             }
         }
