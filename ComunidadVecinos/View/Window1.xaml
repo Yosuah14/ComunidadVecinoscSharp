@@ -9,16 +9,66 @@
     <Grid>
         <TabControl TabStripPlacement="Left">
             <!-- Pestaña 1 -->
-            <TabItem Header="Datos Previos" Margin="10,64,-10,-64">
-                <!-- Contenido de la Pestaña 1 -->
-                <StackPanel Margin="0,59,0,0" Width="700">
-                    <!-- Agrega tus controles aquí -->
-                    <TextBlock Text="Contenido de la Pestaña 1" />
+            <TabItem Header="Datos Previos" Margin="-4,64,5,-64">
+                <StackPanel Margin="5">
+                    <TextBlock Text="Datos previos para crear la comunidad" HorizontalAlignment="Center" Margin="0,5">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="FontFamily" Value="Consolas"/>
+                                <Setter Property="FontSize" Value="20"/>
+
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock Text="Nombre:" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                    <TextBox x:Name="txtNombre"   Text="{Binding Nombre}" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Dirección:" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                    <TextBox x:Name="txtDireccion" Text="{Binding Direccion}" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Fecha de Creación:" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                    <TextBox x:Name="txtFecha" Text="{Binding FechaCreacion}" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Metros Cuadrados:" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                    <TextBox x:Name="txtMetrosCuadrados" Text="{Binding FechaCreacion}" Margin="0,0,0,5"/>
+
+
+                    <CheckBox x:Name="chPiscina" Content="Marcar si tiene piscina" IsChecked="{Binding Piscina}" Margin="0,0,0,7"/>
+
+
+                    <CheckBox x:Name="chParqueInfantil" Content="Marcar si tiene parque infantil" IsChecked="{Binding ParqueInfantil}" Margin="0,0,0,7"/>
+
+
+                    <CheckBox x:Name="chPisoPortero" Content="Marcar si tiene piso de portero" IsChecked="{Binding PisoPortero}" Margin="0,0,0,7"/>
+
+
+                    <CheckBox x:Name="chZonaDuchasBanio" Content="Marcar si tiene zona de duchas/baño" IsChecked="{Binding ZonaDuchasBanio}" Margin="0,0,0,7"/>
+
+
+
+
+                    <CheckBox x:Name="chMaquinasEjercicio" Content="Marcar si tiene máquinas de ejercicio" IsChecked="{Binding MaquinasEjercicio}" Margin="0,0,0,7"/>
+
+
+                    <CheckBox x:Name="chSalaReuniones" Content="Marcar si tiene sala de reuniones" IsChecked="{Binding SalaReuniones}" Margin="0,0,0,7"/>
+
+
+                    <CheckBox x:Name="chPistaTenis" Content="Marcar si tiene pista de tenis" IsChecked="{Binding PistaTenis}" Margin="0,0,0,7"/>
+
+
+                    <CheckBox x:Name="chPistaPadel" Content="Marcar si tiene pista de pádel" IsChecked="{Binding PistaPadel}" Margin="0,0,0,7"/>
+                    <Button Content="Terminar" Click="FinishDataCommunity" Height="28" Width="115"/>
+                    <!-- Otros controles según tus necesidades -->
+
                 </StackPanel>
             </TabItem>
 
+
+
             <!-- Pestaña 2 -->
-            <TabItem Header="Pestaña 2" Margin="11,64,-11,-64">
+            <TabItem Header="Pestaña 2" Margin="-3,64,4,-64">
                 <!-- Contenido de la Pestaña 2 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- Agrega tus controles aquí -->
@@ -27,7 +77,7 @@
             </TabItem>
 
             <!-- Pestaña 3 -->
-            <TabItem Header="Pestaña 3" Margin="10,64,-10,-64">
+            <TabItem Header="Pestaña 3" Margin="-4,64,5,-64">
                 <!-- Contenido de la Pestaña 3 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- Agrega tus controles aquí -->
@@ -36,7 +86,7 @@
             </TabItem>
 
             <!-- Pestaña 4 -->
-            <TabItem Header="Pestaña 4" Margin="18,64,-18,-64">
+            <TabItem Header="Pestaña 4" Margin="0,65,0,-65">
                 <!-- Contenido de la Pestaña 4 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- Agrega tus controles aquí -->
@@ -45,7 +95,7 @@
             </TabItem>
 
             <!-- Pestaña 5 -->
-            <TabItem Header="Pestaña 5" Margin="11,64,-11,-64">
+            <TabItem Header="Pestaña 5" Margin="1,65,-1,-65">
                 <!-- Contenido de la Pestaña 5 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- Agrega tus controles aquí -->
