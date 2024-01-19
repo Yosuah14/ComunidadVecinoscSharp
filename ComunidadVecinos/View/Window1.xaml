@@ -9,7 +9,7 @@
     <Grid>
         <TabControl TabStripPlacement="Left">
             <!-- Pestaña 1 -->
-            <TabItem Header="Datos Previos" Margin="-4,64,5,-64">
+            <TabItem x:Name="pestañadatosprevios" Header="Datos Previos" Margin="-4,64,5,-64">
                 <StackPanel Margin="5">
                     <TextBlock Text="Datos previos para crear la comunidad" HorizontalAlignment="Center" Margin="0,5">
                         <TextBlock.Style>
@@ -29,10 +29,12 @@
                     <TextBox x:Name="txtDireccion" Text="{Binding Direccion, Mode=TwoWay}" Margin="0,0,0,5"/>
 
                     <TextBlock Text="Fecha de Creación:" VerticalAlignment="Center" Margin="0,0,5,5"/>
-                    <TextBox x:Name="txtFecha" Text="{Binding FechaCreacion, Mode=TwoWay}" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtFecha" Text="{Binding FechaCreacion, Mode=TwoWay, StringFormat={}{0:dd/MM/yyyy}}" Margin="0,0,0,5"/>
+
 
                     <TextBlock Text="Metros Cuadrados:" VerticalAlignment="Center" Margin="0,0,5,5"/>
-                    <TextBox x:Name="txtMetrosCuadrados" Text="{Binding MetrosCuadrados, Mode=TwoWay}" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtMetrosCuadrados" Text="{Binding MetrosCuadrados, Mode=TwoWay, StringFormat=N2}" Margin="0,0,0,5"/>
+
 
 
                     <CheckBox x:Name="chPiscina" Content="Marcar si tiene piscina" IsChecked="{Binding Piscina, Mode=TwoWay}" Margin="0,0,0,7"/>
@@ -68,7 +70,7 @@
 
 
             <!-- Pestaña 2 -->
-            <TabItem Header="Pestaña 2" Margin="-3,64,4,-64">
+            <TabItem x:Name="pestañaportales" Header="Pestaña 2" Margin="-3,64,4,-64">
                 <!-- Contenido de la Pestaña 2 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- Agrega tus controles aquí -->

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -194,6 +195,43 @@ namespace ComunidadVecinos.ViewModel
             //usaremos las clases de la librería de MySQL para ejecutar queries
             //Instalar el paqueta MySQL.Data
             MySQLDataManagement.ExecuteNonQuery(SQL, cnstr);
+        }
+        public void UpdateCommunity()
+        {
+            string SQL = $"UPDATE comunidad SET Nombre = '{Nombre}', Direccion = '{Direccion}', FechaCreacion = '{FechaCreacion}', Piscina = '{Piscina}', MetrosCuadrados = '{MetrosCuadrados}', PisoPortero = '{PisoPortero}', ZonaDuchasBanio = '{ZonaDuchasBanio}', ParqueInfantil = '{ParqueInfantil}', MaquinasEjercicio = '{MaquinasEjercicio}', SalaReuniones = '{SalaReuniones}', PistaTenis = '{PistaTenis}', PistaPadel = '{PistaPadel}' WHERE Nombre = '{Nombre}';";
+            MySQLDataManagement.ExecuteNonQuery(SQL, cnstr);
+           
+        }
+        public void LoadCommunities()
+        {
+            String SQL = $"SELECT Nombre, Direccion, FechaCreacion,Piscina,MetrosCuadrados,PisoPortero,ZonaDuchasBanio,ParqueInfantil,MaquinasEjercicio,SalaReuniones,PistaTenis,PistaPadel FROM comunidad;";
+            DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+            if (dt.Rows.Count > 0)
+            {
+                if (comunidades == null) comunidades = new ObservableCollection<Comunidad>();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    comunidades.Add(new Comunidad
+                    {
+                        Nombre = row["Nombre"].ToString(),
+                        Direccion = row["Direccion"].ToString(),
+                        FechaCreacion = row["FechaCreacion"].ToString(),
+                        MetrosCuadrados = Convert.ToInt32(row["MetrosCuadrados"]),
+                        Piscina = Convert.ToByte(row["Piscina"]),
+                        ParqueInfantil = Convert.ToByte(row["ParqueInfantil"]),
+                        MaquinasEjercicio = Convert.ToByte(row["MaquinasEjercicio"]),
+                        SalaReuniones = Convert.ToByte(row["SalaReuniones"]),
+                        PistaTenis = Convert.ToByte(row["PistaTenis"]),
+                        PistaPadel = Convert.ToByte(row["PistaPadel"]),
+                        ZonaDuchasBanio = Convert.ToByte(row["ZonaDuchasBanio"]),
+                        PisoPortero = Convert.ToByte(row["PisoPortero"])
+                    });
+
+                }
+            }
+            dt.Dispose();
         }
 
     }
