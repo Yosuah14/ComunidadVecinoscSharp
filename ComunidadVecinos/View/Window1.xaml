@@ -48,9 +48,6 @@
 
                     <CheckBox x:Name="chZonaDuchasBanio" Content="Marcar si tiene zona de duchas/baño" IsChecked="{Binding ZonaDuchasBanio, Mode=TwoWay}" Margin="0,0,0,7"/>
 
-
-
-
                     <CheckBox x:Name="chMaquinasEjercicio" Content="Marcar si tiene máquinas de ejercicio" IsChecked="{Binding MaquinasEjercicio, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
@@ -61,7 +58,10 @@
 
 
                     <CheckBox x:Name="chPistaPadel" Content="Marcar si tiene pista de pádel" IsChecked="{Binding PistaPadel}" Margin="0,0,0,7"/>
-                    <Button Content="Terminar" Click="FinishDataCommunity" Height="28" Width="115"/>
+                    <Button Content="Terminar" Click="FinishDataCommunity" Height="28" Width="115">
+                     
+                    </Button>
+
                     <!-- Otros controles según tus necesidades -->
 
                 </StackPanel>

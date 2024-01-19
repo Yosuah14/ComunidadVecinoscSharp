@@ -77,10 +77,19 @@ namespace ComunidadVecinos.View
                                     SalaReuniones = modelCommunity.SalaReuniones,
                                     PistaTenis = modelCommunity.PistaTenis,
                                     PistaPadel = modelCommunity.PistaPadel
-                                    // Configurar otras propiedades según sea necesario...
+                              
                                 });
 
-                            MessageBox.Show($"Nueva Comunidad Creada: {modelCommunity.Nombre}", "Nueva Comunidad Creada");
+                            Comunidad nuevaComunidad = modelCommunity.Comunidades.LastOrDefault();
+
+                            if (nuevaComunidad != null)
+                            {
+                                MessageBox.Show($"Nueva Comunidad Creada: {nuevaComunidad.ToString()}", "Nueva Comunidad Creada");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontraron nuevas comunidades", "Nueva Comunidad Creada");
+                            }
                             modelCommunity.NewComunity();
                             pestañaportales.Focus();
                           
@@ -107,9 +116,7 @@ namespace ComunidadVecinos.View
                                 modelCommunity.UpdateCommunity();
                             }
                             pestañaportales.Focus();
-                          
-
-
+                         
                         }
                     }
                     else

@@ -177,19 +177,25 @@ namespace ComunidadVecinos.Domain
         public override string ToString()
         {
             return $"IdComunidad: {IdComunidad}\n" +
-               $"Nombre: {Nombre}\n" +
-               $"Direccion: {Direccion}\n" +
-               $"FechaCreacion: {FechaCreacion}\n" +
-               $"Piscina: {Piscina}\n" +
-               $"MetrosCuadrados: {MetrosCuadrados}\n" +
-               $"PisoPortero: {PisoPortero}\n" +
-               $"ZonaDuchasBanio: {ZonaDuchasBanio}\n" +
-               $"ParqueInfantil: {ParqueInfantil}\n" +
-               $"MaquinasEjercicio: {MaquinasEjercicio}\n" +
-               $"SalaReuniones: {SalaReuniones}\n" +
-               $"PistaTenis: {PistaTenis}\n" +
-               $"PistaPadel: {PistaPadel}";
+                   $"Nombre: {Nombre}\n" +
+                   $"Direccion: {Direccion}\n" +
+                   $"FechaCreacion: {FechaCreacion}\n" +
+                   $"Piscina: {GetSiNoValue(Piscina)}\n" +
+                   $"MetrosCuadrados: {MetrosCuadrados}\n" +
+                   $"PisoPortero: {GetSiNoValue(PisoPortero)}\n" +
+                   $"ZonaDuchasBanio: {GetSiNoValue(ZonaDuchasBanio)}\n" +
+                   $"ParqueInfantil: {GetSiNoValue(ParqueInfantil)}\n" +
+                   $"MaquinasEjercicio: {GetSiNoValue(MaquinasEjercicio)}\n" +
+                   $"SalaReuniones: {GetSiNoValue(SalaReuniones)}\n" +
+                   $"PistaTenis: {GetSiNoValue(PistaTenis)}\n" +
+                   $"PistaPadel: {GetSiNoValue(PistaPadel)}";
         }
-    }
 
+        private string GetSiNoValue(byte? value)
+        {
+            // Devuelve "Si" si el valor es 1, "No" si es 0, y una cadena vacía si es null.
+            return value.HasValue ? (value.Value == 1 ? "Si" : "No") : "";
+        }
+
+    }
 }
