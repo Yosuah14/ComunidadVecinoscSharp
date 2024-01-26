@@ -249,6 +249,20 @@ namespace ComunidadVecinos.ViewModel
                    $"PistaTenis: {GetSiNoValue(PistaTenis)}\n" +
                    $"PistaPadel: {GetSiNoValue(PistaPadel)}";
         }
+        public static int ObtenerIdComunidadPorNombre(string nombreComunidad)
+        {
+            int idComunidad = 0;
+            string SQL = $"SELECT idComunidad FROM comunidad WHERE Nombre = '{nombreComunidad}';";
+            DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+            if (dt.Rows.Count > 0)
+            {
+                idComunidad = Convert.ToInt32(dt.Rows[0]["idComunidad"]);
+            }
+
+            dt.Dispose();
+            return idComunidad;
+        }
 
         private string GetSiNoValue(byte? value)
         {

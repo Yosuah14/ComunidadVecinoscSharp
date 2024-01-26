@@ -25,6 +25,7 @@ namespace ComunidadVecinos.View
     public partial class Window1 : Window
     {
         private ComunidadModelView modelCommunity = new ComunidadModelView();
+        private PortalModelView modelPortal = new PortalModelView();
 
         public Window1()
         {
@@ -92,7 +93,7 @@ namespace ComunidadVecinos.View
                             }
                             modelCommunity.NewComunity();
                             pestañaportales.Focus();
-                          
+                            
                         }
                         else
                         {
@@ -115,7 +116,10 @@ namespace ComunidadVecinos.View
                                 }
                                 modelCommunity.UpdateCommunity();
                             }
-                            pestañaportales.Focus();
+                            comunidaNombrePortales.Text = "Comunidad:" + modelCommunity.Nombre;
+
+                            pestañaportales.Focus();                    
+                            
                          
                         }
                     }
@@ -134,6 +138,47 @@ namespace ComunidadVecinos.View
                 ShowError("El valor de Metros Cuadrados no es válido.");
             }
         }
+        private void AñadirPortales(object sender, RoutedEventArgs e)
+        {
+            // Obtener el número de portales desde la TextBox
+            if (int.TryParse(txtNumeroPortales.Text, out int numeroPortales))
+            {
+                modelPortal.IdComunidad = ComunidadModelView.ObtenerIdComunidadPorNombre(modelCommunity.Nombre);
+                modelPortal.insertarPortales(modelPortal.IdComunidad, numeroPortales);
+                
+                MessageBox.Show($"Se añadirán {numeroPortales} portales a la comunidad.");
+                int numPortales = modelPortal.contarPortalesComunidad(modelCommunity.Nombre);
+                LlenarComboBox(numPortales, "Piso");
+
+                pestañaescaleras.Focus();
+            }
+            else
+            {
+                // Manejar el caso en el que la entrada no sea un número entero
+                MessageBox.Show("Por favor, ingresa un número entero válido.");
+            }
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Permitir solo dígitos (números) en la TextBox
+            e.Handled = !int.TryParse(e.Text, out _);
+        }
+        private void LlenarComboBox(int numeroOpciones,string nombre)
+        {
+            // Limpiar el ComboBox antes de volver a llenarlo
+            comboBoxPortal.Items.Clear();
+
+            // Llenar el ComboBox con el número de opciones según el bucle
+            for (int i = 1; i <= numeroOpciones; i++)
+            {
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = $"{nombre} {i}";
+                comboBoxPortal.Items.Add(item);
+            }
+        }
+
+
 
 
         private bool ValidateInput()
