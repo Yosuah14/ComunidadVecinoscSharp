@@ -21,7 +21,8 @@ namespace ComunidadVecinos.Domain
 
         // Atributos
         private int idPortal;
-        private int? idComunidad; // Puede ser nulo si no está asociado a una comunidad
+        private int? idComunidad;
+        private string number;// Puede ser nulo si no está asociado a una comunidad
 
         // Propiedades
         public int IdPortal
@@ -31,6 +32,15 @@ namespace ComunidadVecinos.Domain
             {
                 idPortal = value;
                 OnPropertyChanged("IdPortal");
+            }
+        }
+        public string Number
+        {
+            get { return number; }
+            set
+            {
+                number = value;
+                OnPropertyChanged("Number");
             }
         }
 

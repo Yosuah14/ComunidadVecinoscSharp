@@ -115,7 +115,7 @@
                     <TextBlock Text="Número de portales en tu comunidad:" Margin="20,0,20,0" Height="45" Width="192"/>
                     <TextBox x:Name="txtNumeroEscaleras" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
                     <!-- TextBox que solo permite números -->
-                    <Button Content="Añadir Escalera al portal seleccionado" Click="AñadirPortales" Height="26" Width="207" Margin="20,20,20,20">
+                    <Button Content="Añadir Escalera al portal seleccionado" Click="AñadirUnaEscalera" Height="26" Width="207" Margin="20,20,20,20">
 
                     </Button>
 

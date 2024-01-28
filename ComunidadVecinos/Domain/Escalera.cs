@@ -16,7 +16,8 @@ namespace ComunidadVecinos.Domain
 
             // Atributos
             private int idEscalera;
-            private int idPortal; // Asumiendo que cada escalera está asociada a un portal
+            private int idPortal;
+            private string nombre;// Asumiendo que cada escalera está asociada a un portal
 
             // Propiedades
             public int IdEscalera
@@ -26,6 +27,15 @@ namespace ComunidadVecinos.Domain
                 {
                     idEscalera = value;
                     OnPropertyChanged(nameof(IdEscalera));
+                }
+            }
+            public string Nombre
+            {
+                get { return nombre; }
+                set
+                {
+                    nombre = value;
+                    OnPropertyChanged(nameof(Nombre));
                 }
             }
 

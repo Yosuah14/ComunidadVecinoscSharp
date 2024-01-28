@@ -1,4 +1,5 @@
 ﻿using ComunidadVecinos.Domain;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +27,8 @@ namespace ComunidadVecinos.ViewModel
 
         // Atributos
         private int idPortal;
-        private int? idComunidad; // Puede ser nulo si no está asociado a una comunidad
+        private int? idComunidad;
+        private string number;// Puede ser nulo si no está asociado a una comunidad
 
         // Propiedades
         public int IdPortal
@@ -48,11 +50,25 @@ namespace ComunidadVecinos.ViewModel
                 OnPropertyChanged("IdComunidad");
             }
         }
+        public string Number
+        {
+            get { return number; }
+            set
+            {
+                number = value;
+                OnPropertyChanged("Number");
+            }
+        }
 
         // Constructor
         public PortalModelView()
         {
             // Puedes inicializar propiedades predeterminadas aquí si lo deseas.
+        }
+
+        public PortalModelView(string numeroPortal)
+        {
+           this.number = numeroPortal;
         }
 
         // Método ToString() para representar la instancia como cadena
@@ -67,14 +83,15 @@ namespace ComunidadVecinos.ViewModel
             string SQL;
             for (int i = 1; i <= numeroPortales; i++)
             {
-                SQL = $"INSERT INTO portal(idComunidad)  VALUES ('{idComunidad}') ;";
+                SQL = $"INSERT INTO portal (idComunidad, numeroPortal) VALUES ('{idComunidad}', '{number} {i}');";
                 MySQLDataManagement.ExecuteNonQuery(SQL, cnstr);
-            }  
+            }
         }
+
         public int contarPortalesComunidad(string ncomunidad)
         {
             int idComunidad = ComunidadModelView.ObtenerIdComunidadPorNombre(ncomunidad);
-            string SQL = $"SELECT COUNT(*) FROM portal WHERE IdComunidad = {idComunidad};";
+            string SQL = $"SELECT COUNT(*) FROM portal WHERE idComunidad = {idComunidad};";
 
             DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
 
@@ -86,6 +103,30 @@ namespace ComunidadVecinos.ViewModel
 
             dt.Dispose();
             return count;
+        }
+        public int SacarIdPortal()
+        {
+            if (idComunidad.HasValue)
+            {
+                string SQL = $"SELECT idPortal FROM portal WHERE idComunidad = {idComunidad} and numeroPortal = '{number}' ;";
+
+                DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(dt.Rows[0][0]);
+                }
+                else
+                {
+                    // Devolver un valor predeterminado (puedes cambiar esto según tus necesidades)
+                    return -1;
+                }
+            }
+            else
+            {
+                // Devolver un valor predeterminado (puedes cambiar esto según tus necesidades)
+                return -1;
+            }
         }
 
         // Otros métodos si es necesario

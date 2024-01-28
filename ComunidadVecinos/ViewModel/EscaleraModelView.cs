@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Mysqlx.Crud.Order.Types;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ComunidadVecinos.ViewModel
 {
@@ -58,6 +59,16 @@ namespace ComunidadVecinos.ViewModel
             {
                 // Puedes inicializar propiedades predeterminadas aquí si lo deseas.
             }
+            public void insertarEscaleras(int numeroEscaleras)
+            {
+                string SQL;
+                for (int i = 1; i <= numeroEscaleras; i++)
+                {
+                    SQL = $"INSERT INTO escalera (idPortal, nombreEscalera) VALUES ('{idPortal}', '{Nombre} {i}');";
+                    MySQLDataManagement.ExecuteNonQuery(SQL, cnstr);
+                }
+            }
+
 
             // Método OnPropertyChanged
             private void OnPropertyChanged(string propertyName)

@@ -1,5 +1,6 @@
 ﻿using ComunidadVecinos.Domain;
 using ComunidadVecinos.ViewModel;
+using ComunidadVecinos.ViewModel.ComunidadVecinos.Domain;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static Mysqlx.Crud.Order.Types;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ComunidadVecinos.View
 {
@@ -26,6 +28,7 @@ namespace ComunidadVecinos.View
     {
         private ComunidadModelView modelCommunity = new ComunidadModelView();
         private PortalModelView modelPortal = new PortalModelView();
+        private EscaleraModelView modelstair= new EscaleraModelView();
 
         public Window1()
         {
@@ -144,12 +147,13 @@ namespace ComunidadVecinos.View
             if (int.TryParse(txtNumeroPortales.Text, out int numeroPortales))
             {
                 modelPortal.IdComunidad = ComunidadModelView.ObtenerIdComunidadPorNombre(modelCommunity.Nombre);
-                modelPortal.insertarPortales(modelPortal.IdComunidad, numeroPortales);
                 
-                MessageBox.Show($"Se añadirán {numeroPortales} portales a la comunidad.");
+                MessageBox.Show($"Se añadirán {numeroPortales} portales a la comunidad.");                
+                modelPortal.Number = $"Portal";
+                modelPortal.insertarPortales(modelPortal.IdComunidad, numeroPortales);
                 int numPortales = modelPortal.contarPortalesComunidad(modelCommunity.Nombre);
-                LlenarComboBox(numPortales, "Piso");
-
+                LlenarComboBox(numPortales, "Portal");
+                
                 pestañaescaleras.Focus();
             }
             else
@@ -158,8 +162,29 @@ namespace ComunidadVecinos.View
                 MessageBox.Show("Por favor, ingresa un número entero válido.");
             }
         }
+        private void AñadirUnaEscalera(object sender, RoutedEventArgs e)
+        {
+            if (int.TryParse(txtNumeroEscaleras.Text, out int numeroEscaleras))
+            {
+                modelstair.Nombre = "Escalera";
+                modelPortal.Number = ObtenerPortalSeleccionado();
+                modelstair.IdPortal = modelPortal.SacarIdPortal();
+                MessageBox.Show($"Se añadirán {numeroEscaleras} escaleras al {modelPortal.Number} de la comunidad.");
+                modelstair.insertarEscaleras(numeroEscaleras);
 
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+                //LlenarComboBox(numPortales, modelstair.Nombre);
+
+                pestañaescaleras.Focus();
+            }
+            else
+            {
+                // Manejar el caso en el que la entrada no sea un número entero
+                MessageBox.Show("Por favor, ingresa un número entero válido.");
+            }  
+
+        }
+
+            private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             // Permitir solo dígitos (números) en la TextBox
             e.Handled = !int.TryParse(e.Text, out _);
@@ -173,13 +198,34 @@ namespace ComunidadVecinos.View
             for (int i = 1; i <= numeroOpciones; i++)
             {
                 ComboBoxItem item = new ComboBoxItem();
-                item.Content = $"{nombre} {i}";
+                item.Content = $"{nombre} {i}";   
                 comboBoxPortal.Items.Add(item);
             }
         }
+        private string ObtenerPortalSeleccionado()
+        {
+            if (comboBoxPortal.SelectedItem != null)
+            {
+                // Obtener el valor seleccionado del ComboBox (asumiendo que el contenido es un string)
+                string selectedText = comboBoxPortal.SelectedItem.ToString();
 
+                // Dividir la cadena para obtener solo la parte necesaria
+                string[] parts = selectedText.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
 
+                if (parts.Length > 1)
+                {
+                    // Tomar la segunda parte después de dividir
+                    string cleanedText = parts[1].Trim();
 
+                    // Limpia el texto para asegurarte de que solo contenga caracteres seguros para SQL
+                    cleanedText = MySql.Data.MySqlClient.MySqlHelper.EscapeString(cleanedText);
+
+                    return cleanedText;
+                }
+            }
+
+            return null;
+        }
 
         private bool ValidateInput()
         {
