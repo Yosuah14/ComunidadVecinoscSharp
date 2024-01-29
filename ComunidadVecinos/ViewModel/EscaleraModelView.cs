@@ -20,7 +20,7 @@ namespace ComunidadVecinos.ViewModel
             private const string cnstr = "server=localhost;uid=Jose;pwd=josepablo;database=vecindario";
             // Atributos
             private int idEscalera;
-            private int idPortal; // Asumiendo que cada escalera está asociada a un portal
+            private int? idPortal; // Asumiendo que cada escalera está asociada a un portal
             private string nombre; // Puedes agregar más propiedades según tus necesidades
 
             // Propiedades
@@ -34,7 +34,7 @@ namespace ComunidadVecinos.ViewModel
                 }
             }
 
-            public int IdPortal
+            public int? IdPortal
             {
                 get { return idPortal; }
                 set
@@ -74,6 +74,45 @@ namespace ComunidadVecinos.ViewModel
             private void OnPropertyChanged(string propertyName)
             {
                 if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+            public int contarEscalerasPortal()
+            {
+                string SQL = $"SELECT COUNT(*) FROM escalera WHERE idPortal = {idPortal};";
+                DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+                int count = 0;
+                if (dt.Rows.Count > 0)
+                {
+                    count = Convert.ToInt32(dt.Rows[0][0]);
+                }
+
+                dt.Dispose();
+                return count;
+            }
+
+            public int SacarIdEscalera()
+            {
+                if (idPortal.HasValue)
+                {
+                    string SQL = $"SELECT idEscalera FROM escalera WHERE idPortal = {idPortal} and nombreEscalera = '{nombre}' ;";
+
+                    DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        return Convert.ToInt32(dt.Rows[0][0]);
+                    }
+                    else
+                    {
+                        // Devolver un valor predeterminado (puedes cambiar esto según tus necesidades)
+                        return -1;
+                    }
+                }
+                else
+                {
+                    // Devolver un valor predeterminado (puedes cambiar esto según tus necesidades)
+                    return -1;
+                }
             }
 
         }

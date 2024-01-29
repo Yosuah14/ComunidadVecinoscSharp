@@ -58,7 +58,7 @@
 
 
                     <CheckBox x:Name="chPistaPadel" Content="Marcar si tiene pista de pádel" IsChecked="{Binding PistaPadel}" Margin="0,0,0,7"/>
-                    <Button Content="Terminar" Click="FinishDataCommunity" Height="28" Width="115">
+                    <Button Content="Añadir Pisos" Click="FinishDataCommunity" Height="28" Width="115">
 
                     </Button>
 
@@ -88,13 +88,9 @@
             </TabItem>
 
             <!-- Pestaña 3 -->
-            <TabItem x:Name="pestañaescaleras" Header="Pestaña 3" Margin="-4,64,5,-64">
+            <TabItem x:Name="pestañaescaleras" Header="Añadir escaleras" Margin="-4,64,5,-64">
                 <!-- Contenido de la Pestaña 3 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
-
-                    <!-- ComboBox para seleccionar comunidad -->
-
-
                     <!-- ComboBox para seleccionar comunidad -->
                     <TextBlock Text="Selecciona el portal de la comunidad" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
                         <TextBlock.RenderTransform>
@@ -119,7 +115,7 @@
 
                     </Button>
 
-                    <Button Content="Añadir Pisos"  Height="28" Width="115" Margin="20,20,20,20">
+                    <Button Content="Añadir Plantas"  Click="AñadirPlantas" Height="28" Width="115" Margin="20,20,20,20">
 
                     </Button>
 
@@ -128,16 +124,56 @@
             </TabItem>
 
             <!-- Pestaña 4 -->
-            <TabItem Header="Pestaña 4" Margin="0,65,0,-65">
+            <TabItem x:Name="pestañaplantas"  Header="Añadir Plantas" Margin="0,65,0,-65">
                 <!-- Contenido de la Pestaña 4 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
+                    <!-- ComboBox para seleccionar comunidad -->
+                    <TextBlock Text="Selecciona el portal de la comunidad" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.094"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <!-- ComboBox para seleccionar portal -->
+                    <ComboBox x:Name="comboBoxPortal2" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" SelectionChanged="comboBoxPortal2_SelectionChanged" />
+
+                    <TextBlock Text="Seleccionala escalera del portal" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.094"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <!-- ComboBox para seleccionar portal -->
+                    <ComboBox x:Name="comboBoxEscalera" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" />
+
+
+
                     <!-- Agrega tus controles aquí -->
-                    <TextBlock Text="Contenido de la Pestaña 4" />
+                    <TextBlock Text="Número de plantas de la escalera:" Margin="20,0,20,0" Height="45" Width="192"/>
+                    <TextBox x:Name="txtNumeroPlantas" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
+                    <!-- TextBox que solo permite números -->
+                    <Button Content="Añadir planta a la escalera seleccionada" Click="AñadirUnaPlanta" Height="26" Width="207" Margin="20,20,20,20">
+
+                    </Button>
+
+                    <Button Content="Añadir Pisos"  Click="AñadirPlantas" Height="28" Width="115" Margin="20,20,20,20">
+
+                    </Button>
+
+
                 </StackPanel>
             </TabItem>
 
             <!-- Pestaña 5 -->
-            <TabItem Header="Pestaña 5" Margin="1,65,-1,-65">
+            <TabItem Header="Añadir pisos" Margin="1,65,-1,-65">
                 <!-- Contenido de la Pestaña 5 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- Agrega tus controles aquí -->
