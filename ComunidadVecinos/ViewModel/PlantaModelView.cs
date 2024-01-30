@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,12 @@ namespace ComunidadVecinos.Domain
         }
 
         // Atributos
-        private int idEscalera;
+        private int? idEscalera;
         private int? idPlanta;
         private string numberPlanta;// Puede ser nulo si no está asociado a una comunidad
 
         // Propiedades
-        public int IdEscalera
+        public int? IdEscalera
         {
             get { return idEscalera; }
             set
@@ -70,6 +71,45 @@ namespace ComunidadVecinos.Domain
                 MySQLDataManagement.ExecuteNonQuery(SQL, cnstr);
             }
         }
+        public int SacarIdPlanta()
+        {
+            if (idEscalera.HasValue)
+            {
+                string SQL = $"SELECT idPlantas FROM plantas WHERE idEscalera = {idEscalera} and numeroPlanta = '{NumberPlanta}' ;";
+
+                DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(dt.Rows[0][0]);
+                }
+                else
+                {
+                    // Devolver un valor predeterminado (puedes cambiar esto según tus necesidades)
+                    return -1;
+                }
+            }
+            else
+            {
+                // Devolver un valor predeterminado (puedes cambiar esto según tus necesidades)
+                return -1;
+            }
+        }
+        public int contarPlantasEscalera()
+        {
+            string SQL = $"SELECT COUNT(*) FROM plantas WHERE idEscalera = {idEscalera};";
+            DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+            int count = 0;
+            if (dt.Rows.Count > 0)
+            {
+                count = Convert.ToInt32(dt.Rows[0][0]);
+            }
+
+            dt.Dispose();
+            return count;
+        }
+
 
 
         // Método ToString() para representar la instancia como cadena
@@ -80,4 +120,5 @@ namespace ComunidadVecinos.Domain
         }
     }
 }
+
 

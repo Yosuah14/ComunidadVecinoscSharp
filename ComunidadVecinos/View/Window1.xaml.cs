@@ -30,21 +30,23 @@ public partial class Window1 : Window
 private int numPortales;
 private int numEscaleras;
 private int numPlantas;
-private int numPisos;
+
+        
 
 
 private ComunidadModelView modelCommunity = new ComunidadModelView();
 private PlantaModelView modelPLant = new PlantaModelView();
 private PortalModelView modelPortal = new PortalModelView();
 private EscaleraModelView modelstair= new EscaleraModelView();
+private PisoModelView modelPiso=new PisoModelView();
 
 public Window1()
 {
 
 
             InitializeComponent();
-DataContext = modelCommunity;
-modelCommunity.LoadCommunities();
+            DataContext = modelCommunity;
+            modelCommunity.LoadCommunities();
             pestañaescaleras.IsEnabled = false;
             pestañapisos.IsEnabled = false;
             pestañaplantas.IsEnabled = false;
@@ -255,8 +257,8 @@ private void AñadirUnaPlanta(object sender, RoutedEventArgs e)
     else
     {
 
-        if (int.TryParse(txtNumeroEscaleras.Text, out int numeroPlantas))
-        {                                
+        if (int.TryParse(txtNumeroPlantas.Text, out int numeroPlantas))
+        {                              
             modelstair.IdPortal = modelPortal.SacarIdPortal();
             modelstair.Nombre = ObtenerComboSeleccionado(comboBoxEscalera);
             modelPLant.NumberPlanta = "Planta";
@@ -280,10 +282,12 @@ private void AñadirUnaPlanta(object sender, RoutedEventArgs e)
 private void comboBoxPortal2_SelectionChanged(object sender, SelectionChangedEventArgs e)
 {
     modelPortal.Number = ObtenerComboSeleccionado(comboBoxPortal2);
+    
+    modelstair.IdPortal= modelPortal.SacarIdPortal();
     numEscaleras = modelstair.contarEscalerasPortal();
     modelstair.Nombre = "Escalera";
-    modelstair.Nombre = ObtenerComboSeleccionado(comboBoxEscalera);
     LlenarComboBox(comboBoxEscalera, numEscaleras, modelstair.Nombre);
+    
     if (comboBoxEscalera.Items.Count != 0)
     {
         comboBoxPortal2.IsEnabled = false;
@@ -294,15 +298,29 @@ private void comboBoxPortal2_SelectionChanged(object sender, SelectionChangedEve
     }  
 }
 
-private void AñadirPlantas(object sender, SelectionChangedEventArgs e)
+private void AñadirPisos(object sender, SelectionChangedEventArgs e)
 {
-    if (comboBoxPortal2.Items.Count == 0)
+    if (string.IsNullOrWhiteSpace(txtNumeroPlantas.Text))
     {
-        pestañapisos.Focus();
+        ShowError("Por favor, completa todos los campos.");
+
     }
     else
     {
-        ShowError("Por favor complete todos los datos");
+        if (comboBoxPortal2.Items.Count == 0)
+        {
+
+        modelPortal.Number = "Portal";
+        LlenarComboBox(comboBoxPortal3, numPortales, modelPortal.Number);
+        pestañaplantas.IsEnabled = false;
+        pestañapisos.IsEnabled = true;
+        pestañapisos.Focus();
+
+        }
+        else
+        {
+            ShowError("Por favor complete todos los datos");
+        }
     }
 }
 private void EliminarItemComboBox(ComboBox comboBox, string itemToRemove)
