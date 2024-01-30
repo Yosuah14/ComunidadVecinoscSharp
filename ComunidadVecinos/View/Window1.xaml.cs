@@ -298,7 +298,7 @@ private void comboBoxPortal2_SelectionChanged(object sender, SelectionChangedEve
     }  
 }
 
-private void AñadirPisos(object sender, SelectionChangedEventArgs e)
+private void AnadirPisos(object sender, SelectionChangedEventArgs e)
 {
     if (string.IsNullOrWhiteSpace(txtNumeroPlantas.Text))
     {
