@@ -165,9 +165,9 @@
                     <TextBlock Text="Número de plantas de la escalera:" Margin="20,0,20,0" Height="45" Width="192"/>
                     <TextBox x:Name="txtNumeroPlantas" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
                     <!-- TextBox que solo permite números -->
-                    <Button Content="Añadir planta a la escalera seleccionada" Click="AñadirUnaPlanta" Height="30" Width="232" Margin="20,20,20,20"/>
-                   
-                    <Button Content="Añadir Pisos" Click="AnadirPisos" Height="28" Width="115" Margin="20,0,20,20"/>
+                    <Button Content="Añadir planta a la escalera seleccionada" Click="AñadirUnaPlanta" Height="30" Width="232" Margin="20,20,20,20">
+                    </Button>
+                    <Button Content="Añadir Pisos" Click="AñadirPisos" Height="28" Width="115" Margin="20,0,20,20">
                     </Button>
 
 
@@ -178,7 +178,7 @@
             <TabItem x:Name="pestañapisos"  Header="Añadir pisos" Margin="1,65,-1,-65">
                 <!-- Contenido de la Pestaña 5 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
-                    <TextBlock Text="Selecciona el portal de la comunidad" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
+                    <TextBlock x:Name="mensajeAviso2" Text="Selecciona el portal de la comunidad" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
                         <TextBlock.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -193,9 +193,9 @@
 
 
                     <!-- ComboBox para seleccionar portal -->
-                    <ComboBox x:Name="comboBoxPortal3" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" />
- 
-                    <TextBlock Text="Seleccionala escalera del portal" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
+                    <ComboBox x:Name="comboBoxPortal3" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" SelectionChanged="comboBoxPortal3_SelectionChanged" />
+
+                    <TextBlock x:Name="mensajeAviso3" Text="Seleccionala escalera del portal" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
                         <TextBlock.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -206,7 +206,7 @@
                         </TextBlock.RenderTransform>
                     </TextBlock>
                     <!-- ComboBox para seleccionar portal -->
-                    <ComboBox x:Name="comboBoxEscalera2" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" />
+                    <ComboBox x:Name="comboBoxEscalera2" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" SelectionChanged="comboBoxEscalera2_SelectionChanged" />
 
                     <TextBlock Text="Selecciona una planta de la escalera" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
                         <TextBlock.RenderTransform>
@@ -219,7 +219,7 @@
                         </TextBlock.RenderTransform>
                     </TextBlock>
                     <!-- ComboBox para seleccionar portal -->
-                    <ComboBox x:Name="comboBoxPlanta" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" />
+                    <ComboBox x:Name="comboBoxPlanta" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre"  />
 
                     <TextBlock Text="Selecciones el numero de pisos" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
                         <TextBlock.RenderTransform>
@@ -232,7 +232,7 @@
                         </TextBlock.RenderTransform>
                     </TextBlock>
 
-                    <TextBox x:Name="txtNumeroEscaleras2" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
+                    <TextBox x:Name="txtNumeroPisos" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
                     <!-- TextBox que solo permite números -->
                     <Button Content="Añadir el piso a la planta seleccionada" Click="AñadirUnPiso" Height="26" Width="207" Margin="20,20,20,20">
 

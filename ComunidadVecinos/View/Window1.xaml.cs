@@ -44,14 +44,14 @@ public Window1()
 {
 
 
-            InitializeComponent();
-            DataContext = modelCommunity;
-            modelCommunity.LoadCommunities();
-            pestañaescaleras.IsEnabled = false;
-            pestañapisos.IsEnabled = false;
-            pestañaplantas.IsEnabled = false;
-            pestañaportales.IsEnabled = false;
-        }
+        InitializeComponent();
+        DataContext = modelCommunity;
+        modelCommunity.LoadCommunities();
+        pestañaescaleras.IsEnabled = false;
+        pestañapisos.IsEnabled = false;
+        pestañaplantas.IsEnabled = false;
+        pestañaportales.IsEnabled = false;
+    }
 private void FinishDataCommunity(object sender, RoutedEventArgs e)
 {
 // Validar los valores antes de crear la comunidad
@@ -63,94 +63,94 @@ string direccion = txtDireccion.Text;
 
 if (modelCommunity.MetrosCuadrados.HasValue && modelCommunity.MetrosCuadrados.Value > 0)
 {
-    // Validar y obtener el valor de Fecha de Creación
-    if (DateTime.TryParseExact(txtFecha.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCreacion))
+// Validar y obtener el valor de Fecha de Creación
+if (DateTime.TryParseExact(txtFecha.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCreacion))
+{
+    // Validar y obtener el valor de Metros Cuadrados
+
+    modelCommunity.Piscina = (byte)(chPiscina.IsChecked == true ? 1 : 0);
+    modelCommunity.ParqueInfantil = (byte)(chParqueInfantil.IsChecked == true ? 1 : 0);
+    modelCommunity.MaquinasEjercicio = (byte)(chMaquinasEjercicio.IsChecked == true ? 1 : 0);
+    modelCommunity.SalaReuniones = (byte)(chSalaReuniones.IsChecked == true ? 1 : 0);
+    modelCommunity.PisoPortero = (byte)(chPisoPortero.IsChecked == true ? 1 : 0);
+    modelCommunity.PistaTenis = (byte)(chPistaTenis.IsChecked == true ? 1 : 0);
+    modelCommunity.ZonaDuchasBanio = (byte)(chZonaDuchasBanio.IsChecked == true ? 1 : 0);
+    modelCommunity.PistaPadel = (byte)(chPistaPadel.IsChecked == true ? 1 : 0);
+
+    if (modelCommunity.Comunidades == null)
+        modelCommunity.Comunidades = new ObservableCollection<Comunidad>();
+
+    if (modelCommunity.Comunidades.Where(x=> x.Nombre == modelCommunity.Nombre).FirstOrDefault() == null)
     {
-        // Validar y obtener el valor de Metros Cuadrados
-
-        modelCommunity.Piscina = (byte)(chPiscina.IsChecked == true ? 1 : 0);
-        modelCommunity.ParqueInfantil = (byte)(chParqueInfantil.IsChecked == true ? 1 : 0);
-        modelCommunity.MaquinasEjercicio = (byte)(chMaquinasEjercicio.IsChecked == true ? 1 : 0);
-        modelCommunity.SalaReuniones = (byte)(chSalaReuniones.IsChecked == true ? 1 : 0);
-        modelCommunity.PisoPortero = (byte)(chPisoPortero.IsChecked == true ? 1 : 0);
-        modelCommunity.PistaTenis = (byte)(chPistaTenis.IsChecked == true ? 1 : 0);
-        modelCommunity.ZonaDuchasBanio = (byte)(chZonaDuchasBanio.IsChecked == true ? 1 : 0);
-        modelCommunity.PistaPadel = (byte)(chPistaPadel.IsChecked == true ? 1 : 0);
-
-        if (modelCommunity.Comunidades == null)
-            modelCommunity.Comunidades = new ObservableCollection<Comunidad>();
-
-        if (modelCommunity.Comunidades.Where(x=> x.Nombre == modelCommunity.Nombre).FirstOrDefault() == null)
-        {
-            modelCommunity.Comunidades.Add(
-                new Comunidad
-                {
-                    Nombre = modelCommunity.Nombre,
-                    Direccion = modelCommunity.Direccion,
-                    FechaCreacion = fechaCreacion.ToString(),
-                    MetrosCuadrados = modelCommunity.MetrosCuadrados,
-                    Piscina = modelCommunity.Piscina,
-                    ParqueInfantil = modelCommunity.ParqueInfantil,
-                    MaquinasEjercicio = modelCommunity.MaquinasEjercicio,
-                    PisoPortero = modelCommunity.PisoPortero,
-                    ZonaDuchasBanio = modelCommunity.ZonaDuchasBanio,
-                    SalaReuniones = modelCommunity.SalaReuniones,
-                    PistaTenis = modelCommunity.PistaTenis,
-                    PistaPadel = modelCommunity.PistaPadel
+        modelCommunity.Comunidades.Add(
+            new Comunidad
+            {
+                Nombre = modelCommunity.Nombre,
+                Direccion = modelCommunity.Direccion,
+                FechaCreacion = fechaCreacion.ToString(),
+                MetrosCuadrados = modelCommunity.MetrosCuadrados,
+                Piscina = modelCommunity.Piscina,
+                ParqueInfantil = modelCommunity.ParqueInfantil,
+                MaquinasEjercicio = modelCommunity.MaquinasEjercicio,
+                PisoPortero = modelCommunity.PisoPortero,
+                ZonaDuchasBanio = modelCommunity.ZonaDuchasBanio,
+                SalaReuniones = modelCommunity.SalaReuniones,
+                PistaTenis = modelCommunity.PistaTenis,
+                PistaPadel = modelCommunity.PistaPadel
                               
-                });
+            });
 
-            Comunidad nuevaComunidad = modelCommunity.Comunidades.LastOrDefault();
+        Comunidad nuevaComunidad = modelCommunity.Comunidades.LastOrDefault();
 
-            if (nuevaComunidad != null)
-            {
-                MessageBox.Show($"Nueva Comunidad Creada: {nuevaComunidad.ToString()}", "Nueva Comunidad Creada");
-            }
-            else
-            {
-                MessageBox.Show("No se encontraron nuevas comunidades", "Nueva Comunidad Creada");
-            }
-            modelCommunity.NewComunity();
-            pestañaportales.IsEnabled = true;
-            pestañaportales.Focus();
-                            
+        if (nuevaComunidad != null)
+        {
+            MessageBox.Show($"Nueva Comunidad Creada: {nuevaComunidad.ToString()}", "Nueva Comunidad Creada");
         }
         else
         {
-            foreach (Comunidad c in modelCommunity.Comunidades)
-            {
-                if (c.Nombre.Equals(modelCommunity.Nombre))
-                {
-                    c.Direccion = modelCommunity.Direccion;
-                    c.FechaCreacion = fechaCreacion.ToString();
-                    c.MetrosCuadrados = modelCommunity.MetrosCuadrados;
-                    c.Piscina = modelCommunity.Piscina;
-                    c.ParqueInfantil = modelCommunity.ParqueInfantil;
-                    c.MaquinasEjercicio = modelCommunity.MaquinasEjercicio;
-                    c.PisoPortero = modelCommunity.PisoPortero;
-                    c.ZonaDuchasBanio = modelCommunity.ZonaDuchasBanio;
-                    c.SalaReuniones = modelCommunity.SalaReuniones;
-                    c.PistaTenis = modelCommunity.PistaTenis;
-                    c.PistaPadel = modelCommunity.PistaPadel;
-                    break;
-                }
-                modelCommunity.UpdateCommunity();
-            }
-            comunidaNombrePortales.Text = "Comunidad:" + modelCommunity.Nombre;
-                            pestañaportales.IsEnabled = true;
-                            pestañaportales.Focus();                    
-                            
-                         
+            MessageBox.Show("No se encontraron nuevas comunidades", "Nueva Comunidad Creada");
         }
+        modelCommunity.NewComunity();
+        pestañaportales.IsEnabled = true;
+        pestañaportales.Focus();
+                            
     }
     else
     {
-        ShowError("El formato de la Fecha de Creación no es válido. Utiliza el formato dd/MM/yyyy.");
+        foreach (Comunidad c in modelCommunity.Comunidades)
+        {
+            if (c.Nombre.Equals(modelCommunity.Nombre))
+            {
+                c.Direccion = modelCommunity.Direccion;
+                c.FechaCreacion = fechaCreacion.ToString();
+                c.MetrosCuadrados = modelCommunity.MetrosCuadrados;
+                c.Piscina = modelCommunity.Piscina;
+                c.ParqueInfantil = modelCommunity.ParqueInfantil;
+                c.MaquinasEjercicio = modelCommunity.MaquinasEjercicio;
+                c.PisoPortero = modelCommunity.PisoPortero;
+                c.ZonaDuchasBanio = modelCommunity.ZonaDuchasBanio;
+                c.SalaReuniones = modelCommunity.SalaReuniones;
+                c.PistaTenis = modelCommunity.PistaTenis;
+                c.PistaPadel = modelCommunity.PistaPadel;
+                break;
+            }
+            modelCommunity.UpdateCommunity();
+        }
+        comunidaNombrePortales.Text = "Comunidad:" + modelCommunity.Nombre;
+                        pestañaportales.IsEnabled = true;
+                        pestañaportales.Focus();                    
+                            
+                         
     }
 }
 else
 {
-    ShowError("El valor de metros cuadrados no es válido.");
+    ShowError("El formato de la Fecha de Creación no es válido. Utiliza el formato dd/MM/yyyy.");
+}
+}
+else
+{
+ShowError("El valor de metros cuadrados no es válido.");
 }
 }
 else
@@ -172,7 +172,7 @@ numPortales = modelPortal.contarPortalesComunidad(modelCommunity.Nombre);
 LlenarComboBox(comboBoxPortal, numPortales, modelPortal.Number);
 pestañaportales.IsEnabled = false;
 pestañadatosprevios.IsEnabled = false;
- pestañaescaleras.IsEnabled = true;
+pestañaescaleras.IsEnabled = true;
 pestañaescaleras.Focus();
 }
 else
@@ -183,32 +183,32 @@ MessageBox.Show("Por favor, ingresa un número entero válido.");
 }
 private void AñadirUnaEscalera(object sender, RoutedEventArgs e)
 {
-    if (string.IsNullOrWhiteSpace(txtNumeroEscaleras.Text))
-    {
-        ShowError("Por favor, completa todos los campos.");
-    }
+if (string.IsNullOrWhiteSpace(txtNumeroEscaleras.Text))
+{
+    ShowError("Por favor, completa todos los campos.");
+}
 if (comboBoxPortal.SelectedItem == null)
-        {
-            ShowError("Por favor, seleccione un portal");
-        }
+    {
+        ShowError("Por favor, seleccione un portal");
+    }
             
 else
 {
 if (int.TryParse(txtNumeroEscaleras.Text, out int numeroEscaleras))
 {
-    modelstair.Nombre = "Escalera";
-    modelPortal.Number = ObtenerComboSeleccionado(comboBoxPortal);
-    modelstair.IdPortal = modelPortal.SacarIdPortal();
-    MessageBox.Show($"Se añadirán {numeroEscaleras} escaleras al {modelPortal.Number} de la comunidad.");
-    modelstair.insertarEscaleras(numeroEscaleras);
+modelstair.Nombre = "Escalera";
+modelPortal.Number = ObtenerComboSeleccionado(comboBoxPortal);
+modelstair.IdPortal = modelPortal.SacarIdPortal();
+MessageBox.Show($"Se añadirán {numeroEscaleras} escaleras al {modelPortal.Number} de la comunidad.");
+modelstair.insertarEscaleras(numeroEscaleras);
 
-    // Elimina el elemento seleccionado del ComboBox
-    EliminarItemComboBox(comboBoxPortal, modelPortal.Number);
+// Elimina el elemento seleccionado del ComboBox
+EliminarItemComboBox(comboBoxPortal, modelPortal.Number);
 }
 else
 {
-    // Manejar el caso en el que la entrada no sea un número entero
-    MessageBox.Show("Por favor, ingresa un número entero válido.");
+// Manejar el caso en el que la entrada no sea un número entero
+MessageBox.Show("Por favor, ingresa un número entero válido.");
 }
 }
 }
@@ -218,121 +218,230 @@ if (string.IsNullOrWhiteSpace(txtNumeroEscaleras.Text))
 {
 ShowError("Por favor, completa todos los campos.");
            
-    }
+}
 else
 {
 
 if (comboBoxPortal.Items.Count == 0)
 {
-    modelPortal.Number = "Portal";
-    numEscaleras = modelstair.contarEscalerasPortal();
-    LlenarComboBox(comboBoxPortal2, numPortales, modelPortal.Number);
-    pestañaescaleras.IsEnabled = false;
-    pestañaplantas.IsEnabled = true;
-    pestañaplantas.Focus();
+modelPortal.Number = "Portal";
+numEscaleras = modelstair.contarEscalerasPortal();
+LlenarComboBox(comboBoxPortal2, numPortales, modelPortal.Number);
+pestañaescaleras.IsEnabled = false;
+pestañaplantas.IsEnabled = true;
+pestañaplantas.Focus();
 }
 else
 {
-    // Manejar el caso en el que la entrada no sea un número entero
-    MessageBox.Show("Por favor, ingresa un número de escaleras para cada portal.");
+// Manejar el caso en el que la entrada no sea un número entero
+MessageBox.Show("Por favor, ingresa un número de escaleras para cada portal.");
 }
 }
 
 }
 private void AñadirUnaPlanta(object sender, RoutedEventArgs e)
 {
-        if (string.IsNullOrWhiteSpace(txtNumeroPlantas.Text))
-        {
-            ShowError("Por favor, completa todos los campos.");
-        }
-        if(comboBoxEscalera.SelectedItem == null)
-        {
-            ShowError("Por favor, seleccione una escalera");
-        }
-        if (comboBoxPortal2.SelectedItem == null)
-        {
-            ShowError("Por favor, selecciones un portal");
-        }
-        
-    else
+    if (string.IsNullOrWhiteSpace(txtNumeroPlantas.Text))
     {
+        ShowError("Por favor, completa todos los campos.");
+    }
+    if(comboBoxEscalera.SelectedItem == null)
+    {
+        ShowError("Por favor, seleccione una escalera");
+    }
+    if (comboBoxPortal2.SelectedItem == null)
+    {
+        ShowError("Por favor, selecciones un portal");
+    }
+        
+else
+{
 
-        if (int.TryParse(txtNumeroPlantas.Text, out int numeroPlantas))
-        {                              
-            modelstair.IdPortal = modelPortal.SacarIdPortal();
-            modelstair.Nombre = ObtenerComboSeleccionado(comboBoxEscalera);
-            modelPLant.NumberPlanta = "Planta";
-            modelPLant.IdEscalera = modelstair.SacarIdEscalera();
-            modelPLant.insertarPlantas(numeroPlantas);
-            EliminarItemComboBox(comboBoxEscalera, modelstair.Nombre);
-            if (comboBoxEscalera.Items.Count == 0)
-            {
-                EliminarItemComboBox(comboBoxPortal2, modelPortal.Number);
-                comboBoxPortal2.IsEnabled = true;
-                mensajeAviso.Text = $" Selecciona el portal de la comunidad";
-            }
-        }
-        else
+    if (int.TryParse(txtNumeroPlantas.Text, out int numeroPlantas))
+    {                              
+        modelstair.IdPortal = modelPortal.SacarIdPortal();
+        modelstair.Nombre = ObtenerComboSeleccionado(comboBoxEscalera);
+        modelPLant.NumberPlanta = "Planta";
+        modelPLant.IdEscalera = modelstair.SacarIdEscalera();
+        modelPLant.insertarPlantas(numeroPlantas);
+        EliminarItemComboBox(comboBoxEscalera, modelstair.Nombre);
+        if (comboBoxEscalera.Items.Count == 0)
         {
-            ShowError("Ingrese un numero entero para las plantas");
+            EliminarItemComboBox(comboBoxPortal2, modelPortal.Number);
+            comboBoxPortal2.IsEnabled = true;
+            mensajeAviso.Text = $" Selecciona el portal de la comunidad";
         }
     }
+    else
+    {
+        ShowError("Ingrese un numero entero para las plantas");
+    }
+}
 }
 
 private void comboBoxPortal2_SelectionChanged(object sender, SelectionChangedEventArgs e)
 {
-    modelPortal.Number = ObtenerComboSeleccionado(comboBoxPortal2);
+modelPortal.Number = ObtenerComboSeleccionado(comboBoxPortal2);
     
-    modelstair.IdPortal= modelPortal.SacarIdPortal();
-    numEscaleras = modelstair.contarEscalerasPortal();
-    modelstair.Nombre = "Escalera";
-    LlenarComboBox(comboBoxEscalera, numEscaleras, modelstair.Nombre);
+modelstair.IdPortal= modelPortal.SacarIdPortal();
+numEscaleras = modelstair.contarEscalerasPortal();
+modelstair.Nombre = "Escalera";
+LlenarComboBox(comboBoxEscalera, numEscaleras, modelstair.Nombre);
     
-    if (comboBoxEscalera.Items.Count != 0)
-    {
-        comboBoxPortal2.IsEnabled = false;
+if (comboBoxEscalera.Items.Count != 0)
+{
+    comboBoxPortal2.IsEnabled = false;
 
-        // Cambiar el texto del botón cuando está deshabilitado
-        mensajeAviso.Text = $"Complete todas las escaleras del {modelPortal.Number}";
+    // Cambiar el texto del botón cuando está deshabilitado
+    mensajeAviso.Text = $"Complete todas las escaleras del {modelPortal.Number}";
                 
-    }  
+}  
 }
 
-private void AnadirPisos(object sender, SelectionChangedEventArgs e)
+private void AñadirPisos(object sender, RoutedEventArgs e)
 {
-    if (string.IsNullOrWhiteSpace(txtNumeroPlantas.Text))
+if (string.IsNullOrWhiteSpace(txtNumeroPlantas.Text))
+{
+    ShowError("Por favor, completa todos los campos.");
+
+}
+else
+{
+    if (comboBoxPortal2.Items.Count == 0)
     {
-        ShowError("Por favor, completa todos los campos.");
+
+    modelPortal.Number = "Portal";
+    LlenarComboBox(comboBoxPortal3, numPortales, modelPortal.Number);
+    pestañaplantas.IsEnabled = false;
+    pestañapisos.IsEnabled = true;
+    pestañapisos.Focus();
 
     }
     else
     {
-        if (comboBoxPortal2.Items.Count == 0)
-        {
+        ShowError("Por favor complete todos los datos");
+    }
+}
+}
 
-        modelPortal.Number = "Portal";
-        LlenarComboBox(comboBoxPortal3, numPortales, modelPortal.Number);
-        pestañaplantas.IsEnabled = false;
-        pestañapisos.IsEnabled = true;
-        pestañapisos.Focus();
+    private void AñadirUnPiso(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(txtNumeroPisos.Text))
+        {
+            ShowError("Por favor, completa todos los campos.");
+            if (comboBoxEscalera2.SelectedItem == null)
+            {
+                ShowError("Por favor, seleccione una escalera");
+            }
+            if (comboBoxPortal3.SelectedItem == null)
+            {
+                ShowError("Por favor, selecciones un portal");
+            }
+            if (comboBoxPlanta.SelectedItem == null)
+            {
+                ShowError("Por favor, selecciones una planta");
+            }
+        }
+        else
+        {
+            if (int.TryParse(txtNumeroPisos.Text, out int numeroPisos))
+            {
+                modelstair.IdPortal = modelPortal.SacarIdPortal();
+                modelstair.Nombre = ObtenerComboSeleccionado(comboBoxEscalera2);
+                modelPLant.IdEscalera = modelstair.SacarIdEscalera();
+                modelPLant.NumberPlanta= ObtenerComboSeleccionado(comboBoxPlanta);
+                modelPiso.IdPlantas=modelPLant.SacarIdPlanta();
+                modelPiso.insertarPiso(numeroPisos, modelPLant.NumberPlanta);
+                EliminarItemComboBox(comboBoxPlanta, modelPLant.NumberPlanta);
+                if (comboBoxPlanta.Items.Count == 0)
+                {
+                    EliminarItemComboBox(comboBoxEscalera2, modelstair.Nombre);
+                    comboBoxEscalera2.IsEnabled = true;
+                    mensajeAviso3.Text = $" Selecciona la planta de la escalera";
+                }
+                if (comboBoxEscalera2.Items.Count == 0)
+                {
+                    EliminarItemComboBox(comboBoxPortal3,modelPortal.Number );
+                    comboBoxPortal3.IsEnabled = true;
+                    mensajeAviso2.Text = $" Selecciona la escalera del portal";
+                }
+            }
+
+
+        }
+    }
+    private void comboBoxPortal3_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        modelPortal.Number = ObtenerComboSeleccionado(comboBoxPortal3);
+        modelstair.IdPortal = modelPortal.SacarIdPortal();
+        numEscaleras = modelstair.contarEscalerasPortal();
+        modelstair.Nombre = "Escalera";
+        LlenarComboBox(comboBoxEscalera2, numEscaleras, modelstair.Nombre);
+
+        if (comboBoxEscalera2.Items.Count != 0)
+        {
+            comboBoxPortal3.IsEnabled = false;
+
+            // Cambiar el texto del botón cuando está deshabilitado
+            mensajeAviso2.Text = $"Complete todas las escaleras del {modelPortal.Number}";
+
+        }
+
+    }
+    private void comboBoxEscalera2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        modelstair.Nombre = ObtenerComboSeleccionado(comboBoxEscalera2);
+        modelPLant.IdEscalera=modelstair.SacarIdEscalera();
+        numPlantas = modelPLant.contarPlantasEscalera();
+        modelPLant.NumberPlanta = "Planta";
+        LlenarComboBox(comboBoxPlanta, numPlantas, modelPLant.NumberPlanta);
+        if (comboBoxPlanta.Items.Count != 0)
+        {
+            comboBoxEscalera2.IsEnabled = false;
+
+            // Cambiar el texto del botón cuando está deshabilitado
+            mensajeAviso3.Text = $"Complete todas las plantas del {modelstair.Nombre}";
+
+        }
+    }
+
+
+        private void CrearComunidad(object sender, RoutedEventArgs e)
+    {
+
+        if (string.IsNullOrWhiteSpace(txtNumeroPisos.Text))
+        {
+            ShowError("Por favor, completa todos los campos.");
 
         }
         else
         {
-            ShowError("Por favor complete todos los datos");
+            if (comboBoxPortal3.Items.Count == 0)
+            {
+
+                ShowError("Comunidad creada correctamente!");
+
+            }
+            else
+            {
+                ShowError("Por favor complete todos los datos");
+            }
         }
+    }
+
+
+
+    //Metodos auxiliares
+    private void EliminarItemComboBox(ComboBox comboBox, string itemToRemove)
+{
+foreach (var item in comboBox.Items.Cast<ComboBoxItem>().ToList())
+{
+    if (item.Content.ToString().Contains(itemToRemove))
+    {
+            comboBox.Items.Remove(item);
+            break; // Sale del bucle después de eliminar el primer elemento coincidente
     }
 }
-private void EliminarItemComboBox(ComboBox comboBox, string itemToRemove)
-{
-    foreach (var item in comboBox.Items.Cast<ComboBoxItem>().ToList())
-    {
-        if (item.Content.ToString().Contains(itemToRemove))
-        {
-                comboBox.Items.Remove(item);
-                break; // Sale del bucle después de eliminar el primer elemento coincidente
-        }
-    }
 }
 
 private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -366,13 +475,13 @@ string[] parts = selectedText.Split(new[] { ':' }, StringSplitOptions.RemoveEmpt
 
 if (parts.Length > 1)
 {
-    // Tomar la segunda parte después de dividir
-    string cleanedText = parts[1].Trim();
+// Tomar la segunda parte después de dividir
+string cleanedText = parts[1].Trim();
 
-    // Limpia el texto para asegurarte de que solo contenga caracteres seguros para SQL
-    cleanedText = MySql.Data.MySqlClient.MySqlHelper.EscapeString(cleanedText);
+// Limpia el texto para asegurarte de que solo contenga caracteres seguros para SQL
+cleanedText = MySql.Data.MySqlClient.MySqlHelper.EscapeString(cleanedText);
 
-    return cleanedText;
+return cleanedText;
 }
 }
 
