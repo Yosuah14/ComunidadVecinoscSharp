@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ComunidadVecinos.Domain
 {
-    public class PropietarioModelView : INotifyPropertyChanged
+    public class Propietario : INotifyPropertyChanged
     {
         // Evento para notificar cambios en las propiedades
         public event PropertyChangedEventHandler PropertyChanged;
@@ -110,7 +110,7 @@ namespace ComunidadVecinos.Domain
         }
 
         // Constructor
-        public PropietarioModelView()
+        public Propietario()
         {
             // Puedes inicializar propiedades predeterminadas aquí si lo deseas.
         }

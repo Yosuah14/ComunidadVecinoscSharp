@@ -31,9 +31,7 @@ private int numPortales;
 private int numEscaleras;
 private int numPlantas;
 
-        
-
-
+//Objetos de comunidades 
 private ComunidadModelView modelCommunity = new ComunidadModelView();
 private PlantaModelView modelPLant = new PlantaModelView();
 private PortalModelView modelPortal = new PortalModelView();
@@ -42,8 +40,6 @@ private PisoModelView modelPiso=new PisoModelView();
 
 public Window1()
 {
-
-
         InitializeComponent();
         DataContext = modelCommunity;
         modelCommunity.LoadCommunities();
@@ -51,7 +47,7 @@ public Window1()
         pestañapisos.IsEnabled = false;
         pestañaplantas.IsEnabled = false;
         pestañaportales.IsEnabled = false;
-    }
+ }
 private void FinishDataCommunity(object sender, RoutedEventArgs e)
 {
 // Validar los valores antes de crear la comunidad
@@ -158,6 +154,7 @@ else
 ShowError("El valor de Metros Cuadrados no es válido.");
 }
 }
+//Metodo para una vez creado los portales pasar a añadir escaleras
 private void AñadirPortales(object sender, RoutedEventArgs e)
 {
 // Obtener el número de portales desde la TextBox
@@ -181,6 +178,7 @@ else
 MessageBox.Show("Por favor, ingresa un número entero válido.");
 }
 }
+//Metodo que en funcion del portal que elijas en la combo inserta en ese el numero de escaleras que pongas en la textBox
 private void AñadirUnaEscalera(object sender, RoutedEventArgs e)
 {
 if (string.IsNullOrWhiteSpace(txtNumeroEscaleras.Text))
@@ -202,7 +200,7 @@ modelstair.IdPortal = modelPortal.SacarIdPortal();
 MessageBox.Show($"Se añadirán {numeroEscaleras} escaleras al {modelPortal.Number} de la comunidad.");
 modelstair.insertarEscaleras(numeroEscaleras);
 
-// Elimina el elemento seleccionado del ComboBox
+// Elimina el elemento seleccionado d la combo box para que no añadas escaleras de mas 
 EliminarItemComboBox(comboBoxPortal, modelPortal.Number);
 }
 else
@@ -221,7 +219,7 @@ ShowError("Por favor, completa todos los campos.");
 }
 else
 {
-
+//Cuando esten todas las escaleras de todos los portales puedes pasar a añadir plantas
 if (comboBoxPortal.Items.Count == 0)
 {
 modelPortal.Number = "Portal";
@@ -239,6 +237,7 @@ MessageBox.Show("Por favor, ingresa un número de escaleras para cada portal.");
 }
 
 }
+
 private void AñadirUnaPlanta(object sender, RoutedEventArgs e)
 {
     if (string.IsNullOrWhiteSpace(txtNumeroPlantas.Text))
@@ -404,8 +403,6 @@ else
 
         }
     }
-
-
         private void CrearComunidad(object sender, RoutedEventArgs e)
     {
 
@@ -428,8 +425,6 @@ else
             }
         }
     }
-
-
 
     //Metodos auxiliares
     private void EliminarItemComboBox(ComboBox comboBox, string itemToRemove)

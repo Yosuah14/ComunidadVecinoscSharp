@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComunidadVecinos.Domain
+namespace ComunidadVecinos.ViewModel
 {
     public class PropietarioModelView : INotifyPropertyChanged
     {
