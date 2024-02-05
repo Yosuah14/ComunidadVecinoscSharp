@@ -8,7 +8,7 @@
         Title="Window2" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <TextBlock x:Name="mensajeAviso2" Text="Selecciona la comunidad a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="315" >
+            <TextBlock x:Name="mensajeAviso3" Text="Selecciona la comunidad a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="315" >
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -23,9 +23,9 @@
 
 
             <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxPortalProp" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" SelectionChanged="comboBoxPortal3_SelectionChanged" />
+            <ComboBox x:Name="comboBoxComunidadProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxComunidadProp_SelectionChanged" />
 
-            <TextBlock x:Name="mensajeAviso3" Text="Selecciona el portal a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="296" >
+            <TextBlock x:Name="mensajeAviso4" Text="Selecciona el portal a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="296" >
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -36,7 +36,7 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
             <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxComunidadlProp" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre" SelectionChanged="comboBoxEscalera2_SelectionChanged" />
+            <ComboBox x:Name="comboBoxPortalProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPortalProp_SelectionChanged" />
 
             <TextBlock Text="Selecciona la escalera a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="319" >
                 <TextBlock.RenderTransform>
@@ -49,7 +49,7 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
             <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxEscaleraProp" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre"  />
+            <ComboBox x:Name="comboBoxEscaleraProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxEscaleraProp_SelectionChanged"  />
 
             <TextBlock Text="Selecciona la planta a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="326" >
                 <TextBlock.RenderTransform>
@@ -62,7 +62,7 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
             <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxPlantaProp" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre"  />
+            <ComboBox x:Name="comboBoxPlantaProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPlantaProp_SelectionChanged"  />
 
             <TextBlock Text="Selecciona el piso al que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="334" >
                 <TextBlock.RenderTransform>
@@ -75,9 +75,9 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
             <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxPisoPorp" Width="109" Height="29" Margin="0,10,0,10" DisplayMemberPath="Nombre"  />
+            <ComboBox x:Name="comboBoxPisoPorp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPisoProp_SelectionChanged"   />
             <!-- TextBox que solo permite números -->
-            <Button Content="Añadir datos del propietario" Click="AñadirUnPiso" Height="26" Width="207" Margin="20,5,20,20">
+            <Button Content="Añadir datos del propietario" Click="AñadirUbicacionPropietario" Height="26" Width="207" Margin="20,5,20,20">
 
             </Button>
         </StackPanel>

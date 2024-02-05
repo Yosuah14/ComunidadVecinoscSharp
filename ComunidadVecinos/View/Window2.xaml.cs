@@ -23,5 +23,30 @@ namespace ComunidadVecinos.View
         {
             InitializeComponent();
         }
+        private void comboBoxComunidadProp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void comboBoxPortalProp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void comboBoxEscaleraProp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void comboBoxPlantaProp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void comboBoxPisoProp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void AñadirUbicacionPropietario(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
