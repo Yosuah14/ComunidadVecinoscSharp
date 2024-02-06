@@ -85,7 +85,30 @@
                 </StackPanel>
 
             </TabItem>
-            
+            <TabItem Header="Datos del Propietario">
+                <StackPanel>
+                    <TextBlock Text="Nombre:" Margin="5"/>
+                    <TextBox Text="{Binding Nombre}" Margin="5" Width="200" />
+
+                    <TextBlock Text="Apellido:" Margin="5"/>
+                    <TextBox Text="{Binding Apellido}" Margin="5" Width="200" />
+
+                    <TextBlock Text="DNI:" Margin="5"/>
+                    <TextBox Text="{Binding Dni}" Margin="5" Width="200" />
+
+                    <TextBlock Text="Provincia:" Margin="5"/>
+                    <TextBox Text="{Binding Provincia}" Margin="5" Width="200" />
+
+                    <TextBlock Text="Localidad:" Margin="5"/>
+                    <TextBox Text="{Binding Localidad}" Margin="5" Width="200" />
+
+                    <TextBlock Text="Código Postal:" Margin="5"/>
+                    <TextBox Text="{Binding CodigoPostal}" Margin="5" Width="200" />
+
+                    <Button Content="Guardar Propietario" Click="GuardarPropietario" Margin="5" Width="150" />
+                </StackPanel>
+            </TabItem>
+
         </TabControl>
         
             

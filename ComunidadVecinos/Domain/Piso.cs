@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,25 @@ namespace ComunidadVecinos.Domain
         private int idPlantas;
         private int idPiso;
         private int parking_idParking;
-        private int numeroPiso;
+        private string numeroPiso;
         private int trastero_idTrastero;
+        private ObservableCollection<Propietario> pisoList;
+
+        public Piso(string numeroPiso)
+        {
+            this.numeroPiso = numeroPiso;
+        }
 
         // Propiedades
+        public ObservableCollection<Propietario> PisoList
+        {
+            get { return pisoList; }
+            set
+            {
+                pisoList = value;
+                OnPropertyChanged("IdPlantas");
+            }
+        }
         public int IdPlantas
         {
             get { return idPlantas; }
@@ -55,7 +71,7 @@ namespace ComunidadVecinos.Domain
             }
         }
 
-        public int NumeroPiso
+        public string NumeroPiso
         {
             get { return numeroPiso; }
             set

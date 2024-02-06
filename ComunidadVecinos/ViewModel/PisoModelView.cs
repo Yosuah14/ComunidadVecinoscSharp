@@ -1,6 +1,8 @@
 ﻿using ComunidadVecinos.Domain.ComunidadVecinos.Domain;
+using ComunidadVecinos.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -21,20 +23,30 @@ namespace ComunidadVecinos.Domain
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
         // Atributos
-        private int idPlantas;
+        private int? idPlantas;
         private int idPiso;
         private int parking_idParking;
-        private int numeroPiso;
+        private string numeroPiso;
         private int trastero_idTrastero;
+        private ObservableCollection<Piso> pisoList;
 
         // Propiedades
-        public int IdPlantas
+        public int? IdPlantas
         {
             get { return idPlantas; }
             set
             {
                 idPlantas = value;
                 OnPropertyChanged("IdPlantas");
+            }
+        }
+        public ObservableCollection<Piso> PisoList
+        {
+            get { return pisoList; }
+            set
+            {
+                pisoList = value;
+                OnPropertyChanged("PisoList");
             }
         }
 
@@ -58,7 +70,7 @@ namespace ComunidadVecinos.Domain
             }
         }
 
-        public int NumeroPiso
+        public string NumeroPiso
         {
             get { return numeroPiso; }
             set
@@ -82,6 +94,10 @@ namespace ComunidadVecinos.Domain
         public PisoModelView()
         {
             // Puedes inicializar propiedades predeterminadas aquí si lo deseas.
+        }
+        public PisoModelView(string numeroPiso)
+        {
+            this.numeroPiso = numeroPiso;
         }
         public void insertarPiso(int numPisos,string piso)
         {
@@ -117,9 +133,8 @@ namespace ComunidadVecinos.Domain
             {
             Trastero_idTrastero = Convert.ToInt32(dt.Rows[0][0]);
             }
-
-
     }
+
     public void insertarParking()
     {
             string SQL = $"INSERT INTO parking (estado) VALUES ('Si');";
@@ -131,6 +146,55 @@ namespace ComunidadVecinos.Domain
             parking_idParking = Convert.ToInt32(dt.Rows[0][0]);
         }
     }
+        public void LoadPiso()
+        {
+            string SQL = $"SELECT numeroPiso FROM pisos where idPlantas={idPlantas};";
+            DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+            if (dt.Rows.Count > 0)
+            {
+                if (pisoList == null) pisoList = new ObservableCollection<Piso>();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    pisoList.Add(new Piso
+                    {
+                        NumeroPiso = row["numeroPiso"].ToString()
+
+                    }) ;
+                }
+            }
+            dt.Dispose();
+        }
+
+        public int SacarIdPiso()
+        {
+            if (idPlantas.HasValue)
+            {
+                string SQL = $"SELECT idPiso FROM pisos WHERE idPlantas= {idPlantas} and numeroPiso = '{numeroPiso}' ;";
+
+                DataTable dt = MySQLDataManagement.LoadData(SQL, cnstr);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(dt.Rows[0][0]);
+                }
+                else
+                {
+                    // Devolver un valor predeterminado (puedes cambiar esto según tus necesidades)
+                    return -1;
+                }
+            }
+            else
+            {
+                // Devolver un valor predeterminado (puedes cambiar esto según tus necesidades)
+                return -1;
+            }
+        }
+        public void newPropietario()
+        {
+
+        }
     }
 
 

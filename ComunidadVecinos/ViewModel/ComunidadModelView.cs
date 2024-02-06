@@ -22,6 +22,7 @@ namespace ComunidadVecinos.ViewModel
 
         // Atributos
         private ObservableCollection<Comunidad> comunidades;
+        private ObservableCollection<Comunidad> comunidadesNombre;
         private int idComunidad;
         private string nombre;
         private string direccion;
@@ -45,7 +46,15 @@ namespace ComunidadVecinos.ViewModel
                 OnPropertyChanged("Comunidades");
             }
         }
-
+        public ObservableCollection<Comunidad> ComunidadesNombre
+        {
+            get { return comunidadesNombre; }
+            set
+            {
+                comunidadesNombre = value;
+                OnPropertyChanged("ComunidadesNombre");
+            }
+        }
         // Propiedades
         public int IdComunidad
         {
@@ -182,6 +191,10 @@ namespace ComunidadVecinos.ViewModel
         {
             // Puedes inicializar propiedades predeterminadas aquí si lo deseas.
         }
+        public ComunidadModelView(string nombre)
+        {
+            this.nombre = nombre;
+        }
 
 
         //Método onPropertyChange
@@ -233,6 +246,7 @@ namespace ComunidadVecinos.ViewModel
             }
             dt.Dispose();
         }
+
         // Método ToString() para representar la instancia como cadena
         public override string ToString()
         {
