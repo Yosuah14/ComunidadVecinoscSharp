@@ -183,6 +183,7 @@ namespace ComunidadVecinos.ViewModel
             // Puedes inicializar propiedades predeterminadas aquí si lo deseas.
         }
 
+
         //Método onPropertyChange
 
         private void OnPropertyChanged(string propertyName)

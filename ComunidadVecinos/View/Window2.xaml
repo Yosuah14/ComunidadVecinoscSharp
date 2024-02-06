@@ -7,80 +7,87 @@
         mc:Ignorable="d"
         Title="Window2" Height="450" Width="800">
     <Grid>
-        <StackPanel>
-            <TextBlock x:Name="mensajeAviso3" Text="Selecciona la comunidad a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="315" >
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.094"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
+        <TabControl TabStripPlacement="Left">
+            <TabItem x:Name="pestañadatosprevios" Header="Datos Previos" Margin="0,-2,1,2">
+                <StackPanel>
+                    <TextBlock x:Name="mensajeAviso3" Text="Selecciona la comunidad a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="315" >
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.094"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
 
 
 
 
-            <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxComunidadProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxComunidadProp_SelectionChanged" />
+                    <!-- ComboBox para seleccionar portal -->
+                    <ComboBox x:Name="comboBoxComunidadProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxComunidadProp_SelectionChanged" />
 
-            <TextBlock x:Name="mensajeAviso4" Text="Selecciona el portal a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="296" >
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.094"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxPortalProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPortalProp_SelectionChanged" />
+                    <TextBlock x:Name="mensajeAviso4" Text="Selecciona el portal a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="296" >
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.094"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <!-- ComboBox para seleccionar portal -->
+                    <ComboBox x:Name="comboBoxPortalProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPortalProp_SelectionChanged" />
 
-            <TextBlock Text="Selecciona la escalera a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="319" >
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.094"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxEscaleraProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxEscaleraProp_SelectionChanged"  />
+                    <TextBlock Text="Selecciona la escalera a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="319" >
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.094"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <!-- ComboBox para seleccionar portal -->
+                    <ComboBox x:Name="comboBoxEscaleraProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxEscaleraProp_SelectionChanged"  />
 
-            <TextBlock Text="Selecciona la planta a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="326" >
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.094"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxPlantaProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPlantaProp_SelectionChanged"  />
+                    <TextBlock Text="Selecciona la planta a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="326" >
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.094"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <!-- ComboBox para seleccionar portal -->
+                    <ComboBox x:Name="comboBoxPlantaProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPlantaProp_SelectionChanged"  />
 
-            <TextBlock Text="Selecciona el piso al que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="334" >
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.094"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <!-- ComboBox para seleccionar portal -->
-            <ComboBox x:Name="comboBoxPisoPorp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPisoProp_SelectionChanged"   />
-            <!-- TextBox que solo permite números -->
-            <Button Content="Añadir datos del propietario" Click="AñadirUbicacionPropietario" Height="26" Width="207" Margin="20,5,20,20">
+                    <TextBlock Text="Selecciona el piso al que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="334" >
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.094"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <!-- ComboBox para seleccionar portal -->
+                    <ComboBox x:Name="comboBoxPisoPorp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPisoProp_SelectionChanged"   />
+                    <!-- TextBox que solo permite números -->
+                    <Button Content="Añadir datos del propietario" Click="AñadirUbicacionPropietario" Height="26" Width="207" Margin="20,5,20,20">
 
-            </Button>
-        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+            </TabItem>
+            
+        </TabControl>
+        
             
          
         

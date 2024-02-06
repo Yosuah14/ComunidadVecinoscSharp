@@ -128,7 +128,6 @@ namespace ComunidadVecinos.ViewModel
                 return -1;
             }
         }
-
         // Otros métodos si es necesario
     }
 }
