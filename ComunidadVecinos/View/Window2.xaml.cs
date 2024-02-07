@@ -41,6 +41,7 @@ namespace ComunidadVecinos.View
         public Window2()
         {
             InitializeComponent();
+            datospropietario.IsEnabled = false;
             DataContext = modelPropietario;
             comboBoxPortalProp.IsEnabled = false;
             comboBoxEscaleraProp.IsEnabled = false;
@@ -104,7 +105,7 @@ namespace ComunidadVecinos.View
         }
         private void comboBoxPisoProp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            modelPiso.NumeroPiso = comboBoxPisoPorp.SelectedItem.ToString();
+            modelPiso.NumeroPiso = ObtenerComboSeleccionado(comboBoxPisoPorp);
             modelPropietario.IdPiso = modelPiso.SacarIdPiso();
             comboBoxComunidadProp.IsEnabled = false;
             comboBoxPortalProp.IsEnabled = false;
@@ -118,6 +119,8 @@ namespace ComunidadVecinos.View
             if (veridicado)
             {
                 MessageBox.Show("Piso seleccionado para agregar propietario");
+                datospropietario.IsEnabled = true;
+                datospropietario.Focus();
             }
             else
             {
@@ -154,7 +157,10 @@ namespace ComunidadVecinos.View
                 return;
             }
             modelPropietario.AñadirPropietario();
-            
+            MessageBox.Show("Porpietario añadido correctamente");
+            Window2 ventana = new Window2();
+            ventana.Close();
+
         }
         //Metodos
         private string ObtenerComboSeleccionado(ComboBox comboBoxPortal)

@@ -416,9 +416,11 @@ else
             if (comboBoxPortal3.Items.Count == 0)
             {
 
-                ShowError("Comunidad creada correctamente!");
+                MessageBox.Show("Comunidad creada correctamente!");
+                Window1 ventana = new Window1();
+                ventana.Close();
 
-            }
+                }
             else
             {
                 ShowError("Por favor complete todos los datos");

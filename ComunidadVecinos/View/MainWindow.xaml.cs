@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComunidadVecinos.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,23 @@ namespace ComunidadVecinos
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void AñadirUbicacionPropietario(object sender, RoutedEventArgs e)
+        {
+            // Verificar qué botón fue clickeado
+            if (sender == btnCrearComunidad)
+            {
+                // Abrir Window1
+                Window1 window1 = new Window1();
+                window1.Show();
+            }
+            else if (sender == btnAñadirPropietarios)
+            {
+                // Abrir Window2
+                Window2 window2 = new Window2();
+                window2.Show();
+            }
         }
     }
 }

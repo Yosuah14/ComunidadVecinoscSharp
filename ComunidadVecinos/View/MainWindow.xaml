@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComunidadVecinos"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="Comunidad de Vecinos" Height="450" Width="800">
+    <Grid Background="#FED998">
+        <TextBlock x:Name="mensajeAviso3" Text="Selecciona la comunidad a la que pertenece el propietario" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,83,0,0" Foreground="#FFFFFF"/>
+        <Button x:Name="btnCrearComunidad" Content="Crear Comunidad" Click="AñadirUbicacionPropietario" Width="200" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,150,0,0" Background="#02D5EA" Foreground="White"/>
+        <Button x:Name="btnAñadirPropietarios" Content="Añadir Propietarios a un piso" Click="AñadirUbicacionPropietario" Width="200" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,220,0,0" Background="#02D5EA" Foreground="White"/>
     </Grid>
 </Window>
