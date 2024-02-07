@@ -6,10 +6,21 @@
         xmlns:local="clr-namespace:ComunidadVecinos.View"
         mc:Ignorable="d"
         Title="Window2" Height="450" Width="800">
-    <Grid Background="#FED998">
-        <TabControl Background="#FED998" TabStripPlacement="Left">
-            <TabItem x:Name="datosprevios" Background="#02D5EA" Foreground="Black" Header="Datos Previos" Margin="0,-2,1,2">
-                <StackPanel>
+    <Grid Background="Black">
+        <TabControl Background="Black" TabStripPlacement="Left">
+            <TabItem x:Name="datosprevios" FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black"  Header="Datos Previos" Margin="-4,3,-1,-6">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
+                <!-- Contenido de la pestaña -->
+                <StackPanel RenderTransformOrigin="0.514,0.435">
                     <TextBlock x:Name="mensajeAviso3" Text="Selecciona la comunidad a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="315" >
                         <TextBlock.RenderTransform>
                             <TransformGroup>
@@ -27,7 +38,7 @@
                     <!-- ComboBox para seleccionar portal -->
                     <ComboBox x:Name="comboBoxComunidadProp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxComunidadProp_SelectionChanged" />
 
-                    <TextBlock x:Name="mensajeAviso4" Text="Selecciona el portal a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="296" >
+                    <TextBlock Foreground="White" x:Name="mensajeAviso4" Text="Selecciona el portal a la que pertenece el propietario" RenderTransformOrigin="0.5,0.5" Height="23" Width="296" >
                         <TextBlock.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -79,13 +90,23 @@
                     <!-- ComboBox para seleccionar portal -->
                     <ComboBox x:Name="comboBoxPisoPorp" Width="109" Height="29" Margin="0,10,0,10"  SelectionChanged="comboBoxPisoProp_SelectionChanged"   />
                     <!-- TextBox que solo permite números -->
-                    <Button Content="Añadir datos del propietario" Click="AñadirUbicacionPropietario" Height="26" Width="207" Margin="20,5,20,20">
+                    <Button FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Añadir datos del propietario" Click="AñadirUbicacionPropietario" Height="26" Width="207" Margin="20,5,20,20">
 
                     </Button>
                 </StackPanel>
 
             </TabItem>
-            <TabItem x:Name="datospropietario" Background="#02D5EA" Foreground="Black" Header="Datos del Propietario">
+            <TabItem x:Name="datospropietario"  FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black"  Header="Datos Propietario" Margin="-4,4,-1,-7">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Yellow"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
                 <StackPanel Height="428" VerticalAlignment="Bottom">
                     <TextBlock Text="Nombre:" Height="28" RenderTransformOrigin="0.5,0.5" Width="50">
                         <TextBlock.RenderTransform>
@@ -113,7 +134,8 @@
 
                     <TextBlock Text="Código Postal:" Width="81" Margin="5" Height="26"/>
                     <TextBox Text="{Binding CodigoPostal}" Margin="5" Width="200" />
-                    <Button Background="#02D5EA" Foreground="White" Content="Guardar Propietario" Click="GuardarPropietario" Width="156" RenderTransformOrigin="0.464,2.547" Height="27" />
+
+                    <Button FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Guardar Propietario" Click="GuardarPropietario" Width="156" RenderTransformOrigin="0.464,2.547" Height="27" />
                 </StackPanel>
             </TabItem>
 

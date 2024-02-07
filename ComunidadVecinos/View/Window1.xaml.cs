@@ -429,7 +429,7 @@ else
     }
 
     //Metodos auxiliares
-    private void EliminarItemComboBox(ComboBox comboBox, string itemToRemove)
+ private void EliminarItemComboBox(ComboBox comboBox, string itemToRemove)
 {
 foreach (var item in comboBox.Items.Cast<ComboBoxItem>().ToList())
 {

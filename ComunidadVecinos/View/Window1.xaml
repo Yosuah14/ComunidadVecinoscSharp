@@ -6,10 +6,20 @@
           xmlns:local="clr-namespace:ComunidadVecinos.View"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
-    <Grid Background="#FED998">
-        <TabControl Background="#FED998" TabStripPlacement="Left">
+    <Grid Background="Black" >
+        <TabControl Background="Black" Foreground="White" TabStripPlacement="Left">
             <!-- Pestaña 1 -->
-            <TabItem Background="#02D5EA" Foreground="Black" x:Name="pestañadatosprevios" Header="Datos Previos" Margin="-6,103,1,-106">
+            <TabItem x:Name="pestañadatosprevios" FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black"  Header="Datos Comunidad" Margin="-6,103,1,-106">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
                 <StackPanel Margin="5">
                     <TextBlock Text="Datos previos para crear la comunidad" HorizontalAlignment="Center" Margin="0,5">
                         <TextBlock.Style>
@@ -22,43 +32,43 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <TextBlock Text="Nombre:" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                    <TextBlock FontStyle="Italic" FontFamily="times" Foreground="White" Text="Nombre:" VerticalAlignment="Center" Margin="0,0,5,5"/>
                     <TextBox   x:Name="txtNombre"   Text="{Binding Nombre, Mode=TwoWay}" Margin="0,0,0,5" />
 
-                    <TextBlock Text="Dirección:" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                    <TextBlock FontStyle="Italic" FontFamily="times" Foreground="White" Text="Dirección:" VerticalAlignment="Center" Margin="0,0,5,5"/>
                     <TextBox    x:Name="txtDireccion" Text="{Binding Direccion, Mode=TwoWay}" Margin="0,0,0,5"/>
 
-                    <TextBlock Text="Fecha de Creación:" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                    <TextBlock FontStyle="Italic" FontFamily="times" Foreground="White"  Text="Fecha de Creación:" VerticalAlignment="Center" Margin="0,0,5,5"/>
                     <TextBox   x:Name="txtFecha" Text="{Binding FechaCreacion, Mode=TwoWay, StringFormat={}{0:dd/MM/yyyy}}" Margin="0,0,0,5"/>
 
 
-                    <TextBlock Text="Metros Cuadrados:" VerticalAlignment="Center" Margin="0,0,5,5"/>
+                    <TextBlock FontStyle="Italic" FontFamily="times" Foreground="White" Text="Metros Cuadrados:" VerticalAlignment="Center" Margin="0,0,5,5"/>
                     <TextBox   x:Name="txtMetrosCuadrados" Text="{Binding MetrosCuadrados, Mode=TwoWay, StringFormat=N2}" Margin="0,0,0,5"/>
 
 
 
-                    <CheckBox   x:Name="chPiscina" Content="Marcar si tiene piscina" IsChecked="{Binding Piscina, Mode=TwoWay}" Margin="0,0,0,7"/>
+                    <CheckBox FontStyle="Italic" FontFamily="times" Foreground="White"  x:Name="chPiscina" Content="Marcar si tiene piscina" IsChecked="{Binding Piscina, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chParqueInfantil" Content="Marcar si tiene parque infantil" IsChecked="{Binding ParqueInfantil, Mode=TwoWay}" Margin="0,0,0,7"/>
+                    <CheckBox FontStyle="Italic" FontFamily="times" Foreground="White" x:Name="chParqueInfantil" Content="Marcar si tiene parque infantil" IsChecked="{Binding ParqueInfantil, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chPisoPortero" Content="Marcar si tiene piso de portero" IsChecked="{Binding PisoPortero, Mode=TwoWay}" Margin="0,0,0,7"/>
+                    <CheckBox FontStyle="Italic" FontFamily="times" Foreground="White" x:Name="chPisoPortero" Content="Marcar si tiene piso de portero" IsChecked="{Binding PisoPortero, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chZonaDuchasBanio" Content="Marcar si tiene zona de duchas/baño" IsChecked="{Binding ZonaDuchasBanio, Mode=TwoWay}" Margin="0,0,0,7"/>
+                    <CheckBox FontStyle="Italic" FontFamily="times" Foreground="White" x:Name="chZonaDuchasBanio" Content="Marcar si tiene zona de duchas/baño" IsChecked="{Binding ZonaDuchasBanio, Mode=TwoWay}" Margin="0,0,0,7"/>
 
-                    <CheckBox x:Name="chMaquinasEjercicio" Content="Marcar si tiene máquinas de ejercicio" IsChecked="{Binding MaquinasEjercicio, Mode=TwoWay}" Margin="0,0,0,7"/>
-
-
-                    <CheckBox x:Name="chSalaReuniones" Content="Marcar si tiene sala de reuniones" IsChecked="{Binding SalaReuniones, Mode=TwoWay}" Margin="0,0,0,7"/>
+                    <CheckBox FontStyle="Italic" FontFamily="times" Foreground="White" x:Name="chMaquinasEjercicio" Content="Marcar si tiene máquinas de ejercicio" IsChecked="{Binding MaquinasEjercicio, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chPistaTenis" Content="Marcar si tiene pista de tenis" IsChecked="{Binding PistaTenis, Mode=TwoWay}" Margin="0,0,0,7"/>
+                    <CheckBox FontStyle="Italic" FontFamily="times" Foreground="White" x:Name="chSalaReuniones" Content="Marcar si tiene sala de reuniones" IsChecked="{Binding SalaReuniones, Mode=TwoWay}" Margin="0,0,0,7"/>
 
 
-                    <CheckBox x:Name="chPistaPadel" Content="Marcar si tiene pista de pádel" IsChecked="{Binding PistaPadel}" Margin="0,0,0,7"/>
-                    <Button Content="Añadir Pisos" Click="FinishDataCommunity" Height="28" Width="115" Background="#02D5EA" Foreground="White">
+                    <CheckBox FontStyle="Italic" FontFamily="times" Foreground="White" x:Name="chPistaTenis" Content="Marcar si tiene pista de tenis" IsChecked="{Binding PistaTenis, Mode=TwoWay}" Margin="0,0,0,7"/>
+
+
+                    <CheckBox FontStyle="Italic" FontFamily="times" Foreground="White" x:Name="chPistaPadel" Content="Marcar si tiene pista de pádel" IsChecked="{Binding PistaPadel}" Margin="0,0,0,7"/>
+                    <Button FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Añadir Pisos" Click="FinishDataCommunity" Height="28" Width="115" >
 
                     </Button>
 
@@ -70,7 +80,17 @@
 
 
             <!-- Pestaña 2 -->
-            <TabItem Background="#02D5EA" Foreground="Black"  x:Name="pestañaportales" Header="Añadir portales" Margin="-6,103,1,-106">
+            <TabItem x:Name="pestañaportales" FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black"  Header="Añadir Portales" Margin="-6,103,1,-106">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- TextBlock para indicar cuántos portales -->
                     <!-- TextBlock para indicar cuántos portales -->
@@ -80,7 +100,7 @@
                     <TextBox x:Name="txtNumeroPortales" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
                     <!-- TextBox que solo permite números -->
 
-                    <Button Background="#02D5EA"  Content="Añadir Escaleras" Click="AñadirPortales" Height="28" Width="115" Margin="20,20,20,20">
+                    <Button FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black"  Content="Añadir Escaleras" Click="AñadirPortales" Height="28" Width="115" Margin="20,20,20,20">
 
                     </Button>
 
@@ -88,7 +108,17 @@
             </TabItem>
 
             <!-- Pestaña 3 -->
-            <TabItem Background="#02D5EA" Foreground="Black"  x:Name="pestañaescaleras" Header="Añadir escaleras" Margin="-6,103,1,-106">
+            <TabItem x:Name="pestañaescaleras"  FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black"  Header="Añadir Escaleras" Margin="-6,103,1,-106">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
                 <!-- Contenido de la Pestaña 3 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- ComboBox para seleccionar comunidad -->
@@ -111,11 +141,11 @@
                     <TextBlock Margin="20,0,20,0" Height="45" Width="192"><Run Text="Número de "/><Run Language="es-es" Text="escaleras"/><Run Text=" "/><Run Language="es-es" Text="del portal"/></TextBlock>
                     <TextBox x:Name="txtNumeroEscaleras" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
                     <!-- TextBox que solo permite números -->
-                    <Button Background="#02D5EA" Foreground="White" Content="Añadir Escalera al portal seleccionado" Click="AñadirUnaEscalera" Height="26" Width="207" Margin="20,20,20,20">
+                    <Button FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Añadir Escalera al portal seleccionado" Click="AñadirUnaEscalera" Height="26" Width="207" Margin="20,20,20,20">
 
                     </Button>
 
-                    <Button  Background="#02D5EA" Foreground="White" Content="Añadir Plantas"  Click="AñadirPlantas" Height="28" Width="115" Margin="20,20,20,20">
+                    <Button  FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Añadir Plantas"  Click="AñadirPlantas" Height="28" Width="115" Margin="20,20,20,20">
 
                     </Button>
 
@@ -124,7 +154,17 @@
             </TabItem>
 
             <!-- Pestaña 4 -->
-            <TabItem  Background="#02D5EA" Foreground="Black"  x:Name="pestañaplantas"  Header="Añadir Plantas" Margin="-6,103,1,-106">
+            <TabItem  x:Name="pestañaplantas"  FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black"  Header="Añadir Plantas" Margin="-6,103,1,-106">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
                 <!-- Contenido de la Pestaña 4 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- ComboBox para seleccionar comunidad -->
@@ -165,9 +205,9 @@
                     <TextBlock Text="Número de plantas de la escalera:" Margin="20,0,20,0" Height="45" Width="192"/>
                     <TextBox x:Name="txtNumeroPlantas" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
                     <!-- TextBox que solo permite números -->
-                    <Button  Background="#02D5EA" Foreground="White" Content="Añadir planta a la escalera seleccionada" Click="AñadirUnaPlanta" Height="30" Width="232" Margin="20,20,20,20">
+                    <Button  FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Añadir planta a la escalera seleccionada" Click="AñadirUnaPlanta" Height="30" Width="232" Margin="20,20,20,20">
                     </Button>
-                    <Button Background="#02D5EA" Foreground="White"  Content="Añadir Pisos" Click="AñadirPisos" Height="28" Width="115" Margin="20,0,20,20">
+                    <Button FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Click="AñadirPisos" Height="28" Width="115" Margin="20,0,20,20">
                     </Button>
 
 
@@ -175,9 +215,19 @@
             </TabItem>
 
             <!-- Pestaña 5 -->
-            <TabItem Background="#02D5EA" Foreground="Black"  x:Name="pestañapisos"  Header="Añadir pisos" Margin="-6,103,1,-106">
+            <TabItem  x:Name="pestañapisos"  FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black"  Header="Añadir Escaleras" Margin="-6,103,1,-106">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
                 <!-- Contenido de la Pestaña 5 -->
-                <StackPanel Background="#FED998" Margin="0,59,0,0" Width="700">
+                <StackPanel Background="Black"  Margin="0,59,0,0" Width="700">
                     <TextBlock x:Name="mensajeAviso2" Text="Selecciona el portal de la comunidad" RenderTransformOrigin="0.5,0.5" Height="23" Width="201" >
                         <TextBlock.RenderTransform>
                             <TransformGroup>
@@ -234,11 +284,11 @@
 
                     <TextBox x:Name="txtNumeroPisos" Width="166" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
                     <!-- TextBox que solo permite números -->
-                    <Button   Background="#02D5EA" Foreground="White" Content="Añadir el piso a la planta seleccionada" Click="AñadirUnPiso" Height="26" Width="207" Margin="20,20,20,20">
+                    <Button   FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Añadir el piso a la planta seleccionada" Click="AñadirUnPiso" Height="26" Width="207" Margin="20,20,20,20">
 
                     </Button>
 
-                    <Button  Background="#02D5EA" Foreground="White" Content="Crear Comunidad"  Click="CrearComunidad" Height="28" Width="115" Margin="20,0,20,20">
+                    <Button  FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Crear Comunidad"  Click="CrearComunidad" Height="28" Width="115" Margin="20,0,20,20">
 
                     </Button>
                 </StackPanel>

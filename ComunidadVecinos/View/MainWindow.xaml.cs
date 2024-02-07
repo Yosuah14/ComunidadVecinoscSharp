@@ -26,18 +26,22 @@ namespace ComunidadVecinos
             InitializeComponent();
         }
 
-        private void AñadirUbicacionPropietario(object sender, RoutedEventArgs e)
+        private async void AñadirUbicacionPropietario(object sender, RoutedEventArgs e)
         {
-            // Verificar qué botón fue clickeado
+            Window3 windowloading= new Window3();
+            // Mostrar la ventana de carga durante 3 segundos
+            windowloading.Visibility = Visibility.Visible;
+            await Task.Delay(3000); // Esperar 3 segundos
+            windowloading.Visibility = Visibility.Collapsed;
+
+            // Determinar qué botón fue clickeado y abrir la ventana correspondiente
             if (sender == btnCrearComunidad)
             {
-                // Abrir Window1
                 Window1 window1 = new Window1();
                 window1.Show();
             }
             else if (sender == btnAñadirPropietarios)
             {
-                // Abrir Window2
                 Window2 window2 = new Window2();
                 window2.Show();
             }
