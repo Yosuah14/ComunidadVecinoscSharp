@@ -10,8 +10,8 @@
         <TextBlock FontFamily="times" Text="Crear Comunidad de vecinos" FontSize="30" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="202,53,0,0" Foreground="#FFFFFF" Height="45" Width="446"/>
         <TextBlock FontFamily="cursive" x:Name="mensajeAviso3" Text="Elige una opción" FontSize="16" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="183,132,0,0" Foreground="#FFFFFF"/>
         <Button  x:Name="btnCrearComunidad" FontFamily="cursive" Content="Crear Comunidad" Click="AñadirUbicacionPropietario" Width="200" Height="50" FontStyle="Italic" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="150,0,0,0" Background="White" Foreground="Black"/>
-        <Button x:Name="btnAñadirPropietarios" Content="Añadir Propietarios a un piso" Click="AñadirUbicacionPropietario" Width="200" Height="55" FontStyle="Italic" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,303,0,0" Background="White" Foreground="Black"/>
-        <Image Source="/Images/radiopatio.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,88,65" Width="241" Height="237"/>
+        <Button x:Name="btnAñadirPropietarios" Content="Añadir Propietarios a un piso" Click="AñadirUbicacionPropietario" Width="200" Height="55" FontStyle="Italic" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,279,0,0" Background="White" Foreground="Black"/>
+        <Image Source="/Images/radiopatio.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,96,65" Width="241" Height="237"/>
     </Grid>
 </Window>
 

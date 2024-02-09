@@ -2,22 +2,14 @@
 using ComunidadVecinos.ViewModel;
 using ComunidadVecinos.ViewModel.ComunidadVecinos.Domain;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static Mysqlx.Crud.Order.Types;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Threading.Tasks;
+
 
 namespace ComunidadVecinos.View
 {
@@ -50,8 +42,9 @@ public Window1()
  }
 private void FinishDataCommunity(object sender, RoutedEventArgs e)
 {
-// Validar los valores antes de crear la comunidad
-if (ValidateInput())
+DateTime? fechaCreacion = datePickerFecha.SelectedDate;
+            // Validar los valores antes de crear la comunidad
+            if (ValidateInput())
 {
 // Obtener los valores de los controles en la interfaz de usuario
 string nombre = txtNombre.Text;
@@ -59,19 +52,20 @@ string direccion = txtDireccion.Text;
 
 if (modelCommunity.MetrosCuadrados.HasValue && modelCommunity.MetrosCuadrados.Value > 0)
 {
-// Validar y obtener el valor de Fecha de Creación
-if (DateTime.TryParseExact(txtFecha.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaCreacion))
-{
-    // Validar y obtener el valor de Metros Cuadrados
+                    // Validar y obtener el valor de Fecha de Creación
+if (fechaCreacion.HasValue) {
 
-    modelCommunity.Piscina = (byte)(chPiscina.IsChecked == true ? 1 : 0);
-    modelCommunity.ParqueInfantil = (byte)(chParqueInfantil.IsChecked == true ? 1 : 0);
-    modelCommunity.MaquinasEjercicio = (byte)(chMaquinasEjercicio.IsChecked == true ? 1 : 0);
-    modelCommunity.SalaReuniones = (byte)(chSalaReuniones.IsChecked == true ? 1 : 0);
-    modelCommunity.PisoPortero = (byte)(chPisoPortero.IsChecked == true ? 1 : 0);
-    modelCommunity.PistaTenis = (byte)(chPistaTenis.IsChecked == true ? 1 : 0);
-    modelCommunity.ZonaDuchasBanio = (byte)(chZonaDuchasBanio.IsChecked == true ? 1 : 0);
-    modelCommunity.PistaPadel = (byte)(chPistaPadel.IsChecked == true ? 1 : 0);
+string fechaFormateada = fechaCreacion.Value.ToString("dd/MM/yyyy");
+// Validar y obtener el valor de Metros Cuadrados
+
+modelCommunity.Piscina = (byte)(chPiscina.IsChecked == true ? 1 : 0);
+modelCommunity.ParqueInfantil = (byte)(chParqueInfantil.IsChecked == true ? 1 : 0);
+modelCommunity.MaquinasEjercicio = (byte)(chMaquinasEjercicio.IsChecked == true ? 1 : 0);
+modelCommunity.SalaReuniones = (byte)(chSalaReuniones.IsChecked == true ? 1 : 0);
+modelCommunity.PisoPortero = (byte)(chPisoPortero.IsChecked == true ? 1 : 0);
+modelCommunity.PistaTenis = (byte)(chPistaTenis.IsChecked == true ? 1 : 0);
+modelCommunity.ZonaDuchasBanio = (byte)(chZonaDuchasBanio.IsChecked == true ? 1 : 0);
+modelCommunity.PistaPadel = (byte)(chPistaPadel.IsChecked == true ? 1 : 0);
 
     if (modelCommunity.Comunidades == null)
         modelCommunity.Comunidades = new ObservableCollection<Comunidad>();
@@ -244,11 +238,11 @@ private void AñadirUnaPlanta(object sender, RoutedEventArgs e)
     {
         ShowError("Por favor, completa todos los campos.");
     }
-    if(comboBoxEscalera.SelectedItem == null)
+    else if(comboBoxEscalera.SelectedItem == null)
     {
         ShowError("Por favor, seleccione una escalera");
     }
-    if (comboBoxPortal2.SelectedItem == null)
+    else if (comboBoxPortal2.SelectedItem == null)
     {
         ShowError("Por favor, selecciones un portal");
     }
@@ -325,21 +319,22 @@ else
 
     private void AñadirUnPiso(object sender, RoutedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(txtNumeroPisos.Text))
-        {
-            ShowError("Por favor, completa todos los campos.");
-            if (comboBoxEscalera2.SelectedItem == null)
+            if (string.IsNullOrWhiteSpace(txtNumeroPisos.Text))
+            {
+                ShowError("Por favor, completa todos los campos.");
+            }
+            else if (comboBoxEscalera2.SelectedItem == null)
             {
                 ShowError("Por favor, seleccione una escalera");
-            }
-            if (comboBoxPortal3.SelectedItem == null)
+            } else if (comboBoxPortal3.SelectedItem == null)
             {
                 ShowError("Por favor, selecciones un portal");
             }
-            if (comboBoxPlanta.SelectedItem == null)
+            else if (comboBoxPlanta.SelectedItem == null)
             {
                 ShowError("Por favor, selecciones una planta");
-            }
+            
+            
         }
         else
         {
@@ -387,7 +382,7 @@ else
         }
 
     }
-    private void comboBoxEscalera2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private  void comboBoxEscalera2_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         modelstair.Nombre = ObtenerComboSeleccionado(comboBoxEscalera2);
         modelPLant.IdEscalera=modelstair.SacarIdEscalera();
@@ -403,7 +398,7 @@ else
 
         }
     }
-        private void CrearComunidad(object sender, RoutedEventArgs e)
+        private async void CrearComunidad(object sender, RoutedEventArgs e)
     {
 
         if (string.IsNullOrWhiteSpace(txtNumeroPisos.Text))
@@ -415,11 +410,9 @@ else
         {
             if (comboBoxPortal3.Items.Count == 0)
             {
-
-                MessageBox.Show("Comunidad creada correctamente!");
-                Window1 ventana = new Window1();
-                ventana.Close();
-
+                MessageBox.Show("Comunidad creada correctamente!");               
+                    await Task.Delay(1300);
+                    this.Close();
                 }
             else
             {

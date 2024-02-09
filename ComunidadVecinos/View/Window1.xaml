@@ -14,11 +14,20 @@
                     <Style TargetType="TabItem">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Gray"/>
                                 <Setter Property="Foreground" Value="DarkGray"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Border Background="Gray">
+                                                <ContentPresenter Content="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+
                 </TabItem.Style>
                 <StackPanel Margin="5">
                     <TextBlock Text="Datos previos para crear la comunidad" HorizontalAlignment="Center" Margin="0,5">
@@ -39,8 +48,7 @@
                     <TextBox    x:Name="txtDireccion" Text="{Binding Direccion, Mode=TwoWay}" Margin="0,0,0,5"/>
 
                     <TextBlock FontStyle="Italic" FontFamily="times" Foreground="White"  Text="Fecha de Creación:" VerticalAlignment="Center" Margin="0,0,5,5"/>
-                    <TextBox   x:Name="txtFecha" Text="{Binding FechaCreacion, Mode=TwoWay, StringFormat={}{0:dd/MM/yyyy}}" Margin="0,0,0,5"/>
-
+                    <DatePicker x:Name="datePickerFecha" SelectedDate="{Binding FechaCreacion, Mode=TwoWay}" Margin="0,0,0,5"/>
 
                     <TextBlock FontStyle="Italic" FontFamily="times" Foreground="White" Text="Metros Cuadrados:" VerticalAlignment="Center" Margin="0,0,5,5"/>
                     <TextBox   x:Name="txtMetrosCuadrados" Text="{Binding MetrosCuadrados, Mode=TwoWay, StringFormat=N2}" Margin="0,0,0,5"/>
@@ -85,11 +93,20 @@
                     <Style TargetType="TabItem">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Gray"/>
                                 <Setter Property="Foreground" Value="DarkGray"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Border Background="Gray">
+                                                <ContentPresenter Content="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+
                 </TabItem.Style>
                 <StackPanel Margin="0,59,0,0" Width="700">
                     <!-- TextBlock para indicar cuántos portales -->
@@ -113,11 +130,20 @@
                     <Style TargetType="TabItem">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Gray"/>
                                 <Setter Property="Foreground" Value="DarkGray"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Border Background="Gray">
+                                                <ContentPresenter Content="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+
                 </TabItem.Style>
                 <!-- Contenido de la Pestaña 3 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
@@ -159,11 +185,20 @@
                     <Style TargetType="TabItem">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Gray"/>
                                 <Setter Property="Foreground" Value="DarkGray"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Border Background="Gray">
+                                                <ContentPresenter Content="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+
                 </TabItem.Style>
                 <!-- Contenido de la Pestaña 4 -->
                 <StackPanel Margin="0,59,0,0" Width="700">
@@ -207,7 +242,7 @@
                     <!-- TextBox que solo permite números -->
                     <Button  FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Content="Añadir planta a la escalera seleccionada" Click="AñadirUnaPlanta" Height="30" Width="232" Margin="20,20,20,20">
                     </Button>
-                    <Button FontStyle="Italic" FontFamily="times" Foreground="White" Background="Black" Click="AñadirPisos" Height="28" Width="115" Margin="20,0,20,20">
+                    <Button FontStyle="Italic" FontFamily="times" Content="Añadir Pisos"   Foreground="White" Background="Black" Click="AñadirPisos" Height="28" Width="115" Margin="20,0,20,20">
                     </Button>
 
 
@@ -215,16 +250,25 @@
             </TabItem>
 
             <!-- Pestaña 5 -->
-            <TabItem  x:Name="pestañapisos"  FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black"  Header="Añadir Escaleras" Margin="-6,103,1,-106">
+            <TabItem x:Name="pestañapisos" FontStyle="Italic" FontFamily="Times New Roman" Foreground="White" Background="Black" Header="Añadir Pisos" Margin="-6,103,1,-106">
                 <TabItem.Style>
                     <Style TargetType="TabItem">
                         <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Gray"/>
                                 <Setter Property="Foreground" Value="DarkGray"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Border Background="Gray">
+                                                <ContentPresenter Content="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+                
                 </TabItem.Style>
                 <!-- Contenido de la Pestaña 5 -->
                 <StackPanel Background="Black"  Margin="0,59,0,0" Width="700">

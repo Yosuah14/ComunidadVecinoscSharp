@@ -9,7 +9,7 @@
     <Grid Background="Black">
         <!-- Elemento de animación de carga -->
         <Canvas Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Ellipse Width="50" Height="50" Fill="Transparent" Stroke="White" StrokeThickness="4" Canvas.Left="5" Canvas.Top="21">
+            <Ellipse Width="50" Height="50" Fill="Transparent" Stroke="White" StrokeThickness="4" Canvas.Left="25" Canvas.Top="25" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Ellipse.RenderTransform>
                     <RotateTransform x:Name="spinnerRotate" Angle="0"/>
                 </Ellipse.RenderTransform>

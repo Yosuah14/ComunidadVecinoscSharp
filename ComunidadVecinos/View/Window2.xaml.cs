@@ -2,22 +2,11 @@
 using ComunidadVecinos.ViewModel.ComunidadVecinos.Domain;
 using ComunidadVecinos.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Collections.ObjectModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Net;
-
+using System.Threading.Tasks;
 namespace ComunidadVecinos.View
 {
     /// <summary>
@@ -29,7 +18,8 @@ namespace ComunidadVecinos.View
         private int numEscaleras;
         private int numPlantas;
         bool veridicado = false;
-        
+        private Window2 ventana;
+
 
         //Objetos de comunidades 
         private ComunidadModelView modelCommunity = new ComunidadModelView();
@@ -129,7 +119,7 @@ namespace ComunidadVecinos.View
 
         }
 
-        private void GuardarPropietario(object sender, RoutedEventArgs e)
+        private async void GuardarPropietario(object sender, RoutedEventArgs e)
         {
            
             // Validar que todos los campos estén rellenos
@@ -158,8 +148,10 @@ namespace ComunidadVecinos.View
             }
             modelPropietario.AñadirPropietario();
             MessageBox.Show("Porpietario añadido correctamente");
-            Window2 ventana = new Window2();
-            ventana.Close();
+            
+            await Task.Delay(1300);
+            this.Close();
+
 
         }
         //Metodos
